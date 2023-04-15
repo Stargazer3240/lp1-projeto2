@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2023 Fabricio Jácome
+Copyright (c) 2023 Fabricio Moura Jácome
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
