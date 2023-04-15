@@ -20,14 +20,14 @@ git clone https://github.com/Stargazer3240/lp1-projeto1.git
 cd ./lp1-lista1
 cmake -S . -B build/
 cmake --build build/
-./bin/program
 ```
 
 ## Usage
-TODO
+### Starting the program
+After compiling the code, run `./bin/program` on the root directory.
 
 ## Author
 - Fabrício Moura Jácome
 
 ## License
-This project is licensed under the [MIT License](https://spdx.org/licenses/MIT.html) - see the LICENSE file for details.
+This project is licensed under the [MIT License](https://spdx.org/licenses/MIT.html) (C++ source files) and [MIT-0 License](https://spdx.org/licenses/MIT-0) (documentation and configuration files) - see the LICENSE folder for details.
