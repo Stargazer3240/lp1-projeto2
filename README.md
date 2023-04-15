@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2023 Fabrício Moura Jácome
+
+SPDX-License-Identifier: MIT-0
+-->
+
 # IMDJ
 IMDJ is a CLI music library manager made for the first Project of the course LP1, from BTI-UFRN. 
 

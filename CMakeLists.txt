@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2023 Fabrício Moura Jácome
+#
+# SPDX-License-Identifier: MIT-0
+
 cmake_minimum_required(VERSION 3.26)
 project(projeto1 LANGUAGES CXX)
 include_directories(include)
