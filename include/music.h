@@ -5,4 +5,10 @@
 #ifndef MUSIC_H
 #define MUSIC_H
 
+class Music {
+public:
+
+private:
+};
+
 #endif
