@@ -2,8 +2,7 @@
 #
 # SPDX-License-Identifier: MIT-0
 
-add_compile_options(-Wall -Wextra -Wpedantic -Werror -pedantic-errors
-        -Weffc++ -Wsign-conversion -ggdb)
+add_compile_options(-Wall -Wextra -Wpedantic -Werror -pedantic-errors -Wsign-conversion -ggdb)
 
 cmake_minimum_required(VERSION 3.26)
 project(IMDJ LANGUAGES CXX)
