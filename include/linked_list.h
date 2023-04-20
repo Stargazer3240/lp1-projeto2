@@ -2,10 +2,6 @@
 //
 // SPDX-License-Identifier: MIT
 
-#include <iostream>
-
-using std::cout;
-
 #include "node.h"
 
 #ifndef LINKED_LIST_H
@@ -13,51 +9,75 @@ using std::cout;
 
 template <typename T>
 class List {
- private:
-  Node<T> head;
-  Node<T> tail;
-
  public:
-  List(Node<T> node) : head{node}, tail{node} {
-    // tail.setNext(nullptr);
-  }
-  /*
-    ~List() {
-      Node<T> it_node(0);
-      it_node.setNext(head);
-      while (it_node.getNext() != nullptr) {
-        erase_after(it_node);
-      }
-    }
-  */
-  Node<T> getHead() const { return head; }
-  Node<T> getTail() const { return tail; }
+  Node<T>* head;
+  Node<T>* tail;
+  int size;
 
-  void setHead(Node<T>& head) { this->head = head; }
-  void setTail(Node<T>& tail) { this->tail = tail; }
-
-  void insert_after(const T& value, const Node<T>& insert_node) {
-    Node<T> new_node = new Node<T>;
-    new_node.setValue(value);
-    new_node.setNext(insert_node.getNext());
-    insert_node.setNext(new_node);
+  List() {
+    auto head = new Node<T>;
+    auto tail = new Node<T>;
+    this->head = head;
+    this->tail = tail;
+    size = 0;
   }
 
-  void erase_after(const Node<T>& erase_node) {
-    Node<T> temp_next{getNext(erase_node.getNext())};
-    delete erase_node.getNext();
-    erase_node.setNext(temp_next.getNext());
-  }
+  ~List() { empty(); }
 
   bool search(T value) {
-    Node<T> it_node = getHead();
-    while (it_node.getNext() != nullptr) {
-      if (it_node.getValue() == value) return 1;
-      cout << (it_node.getValue());
-      it_node = it_node.getNext();
+    Node<T>* node = head;
+    bool to_return = false;
+
+    if (size == 1) {
+      if (head->getValue() == value) {
+        to_return = true;
+      }
+    } else if (size > 1) {
+      while (node->getNext() != nullptr) {
+        if (node->getValue() == value) {
+          to_return = true;
+        }
+        node = node->getNext();
+      }
     }
 
-    return 0;
+    return to_return;
+  }
+
+  Node<T>* find(T value) {
+    Node<T>* node = head;
+    while (node->getNext() != nullptr) {
+      if (node->getValue() == value) {
+        return node;
+      }
+      node = node->getNext();
+    }
+    return nullptr;
+  }
+
+  void push_back(T value) {
+    auto new_node = new Node<T>;
+    new_node->setValue(value);
+    new_node->setNext(nullptr);
+    tail->setNext(new_node);
+    ++size;
+  }
+
+  void remove(T value) {
+    Node<T>* node = find(value);
+    if (!node) {
+      delete *node;
+    }
+    --size;
+  }
+
+  void empty() {
+    Node<T>* node = head;
+    while (node->getNext() != nullptr) {
+      delete head;
+      node = node->getNext();
+      head = node;
+    }
   }
 };
 

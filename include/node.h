@@ -2,10 +2,6 @@
 //
 // SPDX-License-Identifier: MIT
 
-#include <iostream>
-
-using std::cout;
-
 #ifndef NODE_H
 #define NODE_H
 
@@ -16,21 +12,20 @@ class Node {
   Node* next;
 
  public:
-  Node(T value) : value{value}, next{nullptr} {}
-
-  T getValue() const { return value; }
-  Node* getNext() const { return next; }
-
-  void setValue(const T& value) { this->value = value; }
-  void setNext(const Node* next) { this->next = next; }
-
-  Node operator=(const T& node) {
-    this->value = node.value;
-    this->next = node.next;
+  Node() {
+    this->value = 0;
+    this->next = nullptr;
   }
 
-  friend void operator<<(std::ostream& os, const T& node) {
-    cout << node.value;
+  T getValue() { return value; }
+  Node* getNext() { return next; }
+
+  void setValue(T value) { this->value = value; }
+  void setNext(Node* next) { this->next = next; }
+
+  void operator=(Node* node) {
+    this->value = node->value;
+    this->next = node->next;
   }
 };
 
