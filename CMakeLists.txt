@@ -3,19 +3,7 @@
 # SPDX-License-Identifier: MIT-0
 
 add_compile_options(-Wall -Wextra -Wpedantic -Werror -pedantic-errors
-        -Weffc++ -Wsign-conversion -glldb)
-
-# If clang-tidy is installed, run it during build process.
-find_program(CLANG_TIDY clang-tidy)
-if(CLANG_TIDY)
-    set(CMAKE_CXX_CLANG_TIDY clang-tidy)
-endif()
-
-# If clang compiler is installed, use it.
-find_program(CLANG_COMPILER clang)
-if(CLANG_COMPILER)
-    set(CMAKE_CXX_COMPILER ${CLANG_COMPILER})
-endif()
+        -Weffc++ -Wsign-conversion -ggdb)
 
 cmake_minimum_required(VERSION 3.26)
 project(IMDJ LANGUAGES CXX)
