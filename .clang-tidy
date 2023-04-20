@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: MIT-0
 
 ---
-Checks:          'clang-diagnostic-*,clang-analyzer-*,bugprone-*,cert-*,cppcoreguidelines-*,hicpp-*,performance-*,readability-*,modernize-*,-modernize-use-trailing-return-type'
+Checks:          'clang-diagnostic-*,clang-analyzer-*,bugprone-*,cert-*,hicpp-*,performance-*,readability-*,modernize-*,-modernize-use-trailing-return-type'
 WarningsAsErrors: '*'
 HeaderFilterRegex: 'include/*'
 AnalyzeTemporaryDtors: false

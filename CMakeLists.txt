@@ -2,6 +2,21 @@
 #
 # SPDX-License-Identifier: MIT-0
 
+add_compile_options(-Wall -Wextra -Wpedantic -Werror -pedantic-errors
+        -Weffc++ -Wsign-conversion -glldb)
+
+# If clang-tidy is installed, run it during build process.
+find_program(CLANG_TIDY clang-tidy)
+if(CLANG_TIDY)
+    set(CMAKE_CXX_CLANG_TIDY clang-tidy)
+endif()
+
+# If clang compiler is installed, use it.
+find_program(CLANG_COMPILER clang)
+if(CLANG_COMPILER)
+    set(CMAKE_CXX_COMPILER ${CLANG_COMPILER})
+endif()
+
 cmake_minimum_required(VERSION 3.26)
 project(IMDJ LANGUAGES CXX)
 
@@ -14,31 +29,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_EXPORT_COMPILE_COMMANDS=ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "")
 
-add_executable(program 
+add_executable( program 
                 src/main.cpp
                 src/music.cpp
                 src/playlist.cpp)
-
-# Detect your OS and pass warning flags to the compiler.
-if (MSVC)
-    # warning level 4
-    add_compile_options(/W4 /WX)
-else()
-    # additional warnings
-    add_compile_options(-Wall -Wextra -Wpedantic -Werror -pedantic-errors -Weffc++ -Wsign-conversion)
-    if(CMAKE_BUILD_TYPE STREQUAL Debug)
-        add_compile_options(-glldb)
-    endif()
-endif()
-
-# If clang-tidy is installed, run it during build process.
-find_program(CLANG_TIDY clang-tidy)
-if(CLANG_TIDY)
-    set(CMAKE_CXX_CLANG_TIDY ${CLANG_TIDY})
-endif()
-
-# If clang compiler is installed, use it.
-find_program(CLANG_COMPILER clang)
-if(CLANG_COMPILER)
-    set(CMAKE_CXX_COMPILER ${CLANG_COMPILER})
-endif()
