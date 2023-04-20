@@ -2,12 +2,8 @@
 //
 // SPDX-License-Identifier: MIT
 
-#include "music.h"
 #include "linked_list.h"
+#include "music.h"
 #include "playlist.h"
 
-int main()
-{
-
-    return 0;
-}
+int main() { return 0; }

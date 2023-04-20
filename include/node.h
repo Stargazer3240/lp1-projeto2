@@ -5,19 +5,19 @@
 #ifndef NODE_H
 #define NODE_H
 
-template <typename T>
-class Node {
-    private:
-        T value;
-        Node* next;
-    public:
-        Node(T v, Node* n) : value{v}, next{n} {} 
+template <typename T> class Node {
+private:
+  T value;
+  Node *next;
 
-        const T getValue() {return value;}
-        const Node* getNext() {return next;}
+public:
+  Node(T v, Node *n) : value{v}, next{n} {}
 
-        void setValue(const T& v) {value = v;}
-        void setNext(const Node* n) {next = n;}
+  const T getValue() { return value; }
+  const Node *getNext() { return next; }
+
+  void setValue(const T &v) { value = v; }
+  void setNext(const Node *n) { next = n; }
 };
 
 #endif

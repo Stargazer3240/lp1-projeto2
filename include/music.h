@@ -7,7 +7,6 @@
 
 class Music {
 public:
-
 private:
 };
 
