@@ -6,8 +6,8 @@
 #define MUSIC_H
 
 class Music {
-public:
-private:
+ public:
+ private:
 };
 
 #endif

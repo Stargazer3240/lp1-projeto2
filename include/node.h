@@ -2,22 +2,36 @@
 //
 // SPDX-License-Identifier: MIT
 
+#include <iostream>
+
+using std::cout;
+
 #ifndef NODE_H
 #define NODE_H
 
-template <typename T> class Node {
-private:
+template <typename T>
+class Node {
+ private:
   T value;
-  Node *next;
+  Node* next;
 
-public:
-  Node(T v, Node *n) : value{v}, next{n} {}
+ public:
+  Node(T value) : value{value}, next{nullptr} {}
 
-  const T getValue() { return value; }
-  const Node *getNext() { return next; }
+  T getValue() const { return value; }
+  Node* getNext() const { return next; }
 
-  void setValue(const T &v) { value = v; }
-  void setNext(const Node *n) { next = n; }
+  void setValue(const T& value) { this->value = value; }
+  void setNext(const Node* next) { this->next = next; }
+
+  Node operator=(const T& node) {
+    this->value = node.value;
+    this->next = node.next;
+  }
+
+  friend void operator<<(std::ostream& os, const T& node) {
+    cout << node.value;
+  }
 };
 
 #endif
