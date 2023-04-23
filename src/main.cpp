@@ -11,11 +11,10 @@
 using std::cout;
 
 int main() {
-  List<int> lista;
-  int number{5};
-  int* ref{&number};
-  lista.push_back(ref);
-  cout << lista.search(ref) << '\n';
+  List<Music> lista;
+  Music macarena("Macarena", "Joseph");
+  lista.push_back(&macarena);
+  cout << lista.search(&macarena) << '\n';
   // lista.remove(5);
   // cout << lista.search(5) << '\n';
 

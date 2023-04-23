@@ -6,12 +6,12 @@
 
 // Playlist::Playlist(string name) { this->name = move(name); }
 
-Playlist::Playlist(string name, List<Music> musics) {
-  this->name = name;
+Playlist::Playlist(string name, const List<Music>& musics) {
+  this->name = std::move(name);
   this->musics = musics;
 }
 
-void Playlist::setName(string name) { this->name = move(name); }
+void Playlist::setName(string name) { this->name = std::move(name); }
 
 string Playlist::getName() { return name; }
 

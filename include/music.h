@@ -6,7 +6,7 @@
 #include <utility>
 #include <string>
 
-using std::string, std::ostream, std::cout, std::move;
+using std::string, std::ostream, std::cout;
 
 #ifndef MUSIC_H
 #define MUSIC_H
@@ -27,12 +27,12 @@ class Music {
   string getTitle();
   string getArtist();
 
-  friend void operator<<(ostream& os, const Music& to_print) {
-    os << "Title: " << to_print.title << '\n'
+  friend void operator<<(ostream& out, const Music& to_print) {
+    out << "Title: " << to_print.title << '\n'
        << "Artist: " << to_print.artist << '\n';
   }
 
-  bool operator==(Music to_compare);
+  bool operator==(const Music& to_compare);
 };
 
 #endif

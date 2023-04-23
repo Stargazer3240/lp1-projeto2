@@ -19,7 +19,7 @@ class Playlist {
 
  public:
 //  Playlist(string name);
-  Playlist(string name, List<Music> musics);
+  Playlist(string name, const List<Music>& musics);
 
   void setName(string name);
 
