@@ -12,10 +12,7 @@ class Node {
   Node* next;
 
  public:
-  Node() {
-    this->value = 0;
-    this->next = nullptr;
-  }
+  Node() { this->next = nullptr; }
 
   T getValue() { return value; }
   Node* getNext() { return next; }
