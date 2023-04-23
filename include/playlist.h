@@ -18,15 +18,15 @@ class Playlist {
   List<Music> musics;
 
  public:
-  Playlist(string name);
+//  Playlist(string name);
   Playlist(string name, List<Music> musics);
 
   void setName(string name);
 
   string getName();
 
-  void add_music(Music music);
-  void remove_music(Music music);
+  void add_music(Music* music);
+  void remove_music(Music* music);
   Music next_music();
   void print_musics();
 };

@@ -12,8 +12,10 @@ using std::cout;
 
 int main() {
   List<int> lista;
-  lista.push_back(5);
-  cout << lista.search(5) << '\n';
+  int number{5};
+  int* ref{&number};
+  lista.push_back(ref);
+  cout << lista.search(ref) << '\n';
   // lista.remove(5);
   // cout << lista.search(5) << '\n';
 

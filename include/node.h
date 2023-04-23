@@ -8,16 +8,16 @@
 template <typename T>
 class Node {
  private:
-  T value;
+  T* value;
   Node* next;
 
  public:
   Node() { this->next = nullptr; }
 
-  T getValue() { return value; }
+  T* getValue() { return value; }
   Node* getNext() { return next; }
 
-  void setValue(T value) { this->value = value; }
+  void setValue(T* value) { this->value = value; }
   void setNext(Node* next) { this->next = next; }
 
   void operator=(Node* node) {

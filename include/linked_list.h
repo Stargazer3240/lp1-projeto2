@@ -24,7 +24,7 @@ class List {
 
   ~List() { empty(); }
 
-  bool search(T value) {
+  bool search(T* value) {
     Node<T>* node = head;
     bool to_return = false;
 
@@ -44,7 +44,7 @@ class List {
     return to_return;
   }
 
-  Node<T>* find(T value) {
+  Node<T>* find(T* value) {
     Node<T>* node = head;
     while (node->getNext() != nullptr) {
       if (node->getValue() == value) {
@@ -55,7 +55,7 @@ class List {
     return nullptr;
   }
 
-  void push_back(T value) {
+  void push_back(T* value) {
     auto new_node = new Node<T>;
     new_node->setValue(value);
     new_node->setNext(nullptr);
@@ -63,10 +63,10 @@ class List {
     ++size;
   }
 
-  void remove(T value) {
+  void remove(T* value) {
     Node<T>* node = find(value);
     if (!node) {
-      delete *node;
+      delete node;
     }
     --size;
   }

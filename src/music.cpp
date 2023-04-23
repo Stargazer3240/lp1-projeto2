@@ -9,10 +9,18 @@ Music::Music(string title, string artist) {
   this->artist = artist;
 }
 
-void Music::setTitle(string title) { this->title = title; }
+void Music::setTitle(string title) { this->title = move(title); }
 
-void Music::setArtist(string artist) { this->artist = artist; }
+void Music::setArtist(string artist) { this->artist = move(artist); }
 
 string Music::getTitle() { return title; }
 
 string Music::getArtist() { return artist; }
+
+bool Music::operator==(Music to_compare) {
+  if (title == to_compare.title && artist == to_compare.artist) {
+    return true;
+  }
+
+  return false;
+}
