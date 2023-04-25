@@ -18,7 +18,7 @@ class Playlist {
   List<Music> musics;
 
  public:
-//  Playlist(string name);
+  //  Playlist(string name);
   Playlist(string name, const List<Music>& musics);
 
   void setName(string name);

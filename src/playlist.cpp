@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: 2023 Fabrício Moura Jácome
 //
 // SPDX-License-Identifier: MIT
-
+/*
 #include "playlist.h"
 
 // Playlist::Playlist(string name) { this->name = move(name); }
@@ -18,7 +18,7 @@ string Playlist::getName() { return name; }
 void Playlist::add_music(Music* music) { musics.push_back(music); }
 
 void Playlist::remove_music(Music* music) { musics.remove(music); }
-/*
+
 Music Playlist::next_music(){
 
 }

@@ -3,8 +3,8 @@
 // SPDX-License-Identifier: MIT
 
 #include <iostream>
-#include <utility>
 #include <string>
+#include <utility>
 
 using std::string, std::ostream, std::cout;
 
@@ -29,7 +29,7 @@ class Music {
 
   friend void operator<<(ostream& out, const Music& to_print) {
     out << "Title: " << to_print.title << '\n'
-       << "Artist: " << to_print.artist << '\n';
+        << "Artist: " << to_print.artist << '\n';
   }
 
   bool operator==(const Music& to_compare);

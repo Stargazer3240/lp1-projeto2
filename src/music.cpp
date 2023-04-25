@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: 2023 Fabrício Moura Jácome
 //
 // SPDX-License-Identifier: MIT
-
+/*
 #include "music.h"
 
 Music::Music(string title, string artist) {
@@ -19,4 +19,4 @@ string Music::getArtist() { return artist; }
 
 bool Music::operator==(const Music& to_compare) {
   return title == to_compare.title && artist == to_compare.artist;
-}
+}*/

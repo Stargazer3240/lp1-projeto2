@@ -7,24 +7,13 @@
 
 template <typename T>
 class Node {
- private:
-  T* value;
+ public:
+  T value;
   Node* next;
 
- public:
-  Node() { 
-    this->value = nullptr;
-    this->next = nullptr; }
-
-  T* getValue() { return value; }
-  Node* getNext() { return next; }
-
-  void setValue(T* value) { this->value = value; }
-  void setNext(Node* next) { this->next = next; }
-
-  void operator=(Node* node) {
-    this->value = node->value;
-    this->next = node->next;
+  explicit Node(T value) {
+    this->value = value;
+    this->next = nullptr;
   }
 };
 
