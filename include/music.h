@@ -2,11 +2,10 @@
 //
 // SPDX-License-Identifier: MIT
 
-#include <iostream>
 #include <string>
 #include <utility>
 
-using std::string, std::ostream, std::cout;
+using std::string, std::ostream;
 
 #ifndef MUSIC_H
 #define MUSIC_H
@@ -26,13 +25,6 @@ class Music {
 
   string getTitle();
   string getArtist();
-
-  friend void operator<<(ostream& out, const Music& to_print) {
-    out << "Title: " << to_print.title << '\n'
-        << "Artist: " << to_print.artist << '\n';
-  }
-
-  bool operator==(const Music& to_compare);
 };
 
 #endif

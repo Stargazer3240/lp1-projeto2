@@ -92,7 +92,7 @@ class List {
         Node<T>* previous_dummy = get(index - 1);
         previous_dummy->next = dummy->next;
       }
-      //delete dummy->value;
+      // delete dummy->value;
       delete dummy;
       --size;
     }

@@ -2,10 +2,6 @@
 //
 // SPDX-License-Identifier: MIT
 
-#include <iostream>
-
-using std::cout;
-
 #include "linked_list.h"
 #include "music.h"
 
@@ -25,8 +21,8 @@ class Playlist {
 
   string getName();
 
-  void add_music(Music* music);
-  void remove_music(Music* music);
+  void add_music();
+  void remove_music();
   Music next_music();
   void print_musics();
 };
