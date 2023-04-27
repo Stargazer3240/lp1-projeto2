@@ -27,7 +27,7 @@ class List {
 
   ~List() { empty(); }
 
-  int getSize() const { return size; }
+  int getSize() { return size; }
 
   bool search(int index) {
     if (index < 0 || index >= size) {

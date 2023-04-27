@@ -11,20 +11,21 @@
 class Playlist {
  private:
   string name;
-  List<Music> musics;
+  List<Music*> music_list;
+  int on_queue;
 
  public:
-  //  Playlist(string name);
-  Playlist(string name, const List<Music>& musics);
+  explicit Playlist(string name);
+  Playlist(string name, const List<Music*>& music_list);
 
   void setName(string name);
 
   string getName();
 
-  void add_music();
-  void remove_music();
-  Music next_music();
-  void print_musics();
+  void add_music(Music* music);
+  void remove_music(int index);
+  Music* next_music();
+  void print(int index = 0);
 };
 
 #endif

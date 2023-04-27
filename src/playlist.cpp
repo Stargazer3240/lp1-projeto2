@@ -4,23 +4,44 @@
 
 #include "playlist.h"
 
-// Playlist::Playlist(string name) { this->name = move(name); }
+Playlist::Playlist(string name) { 
+  this->name = std::move(name); 
+  on_queue = 0;
+}
 
-Playlist::Playlist(string name, const List<Music>& musics) {
+Playlist::Playlist(string name, const List<Music*>& music_list) {
   this->name = std::move(name);
-  this->musics = musics;
+  this->music_list = music_list;
+  on_queue = 0;
 }
 
 void Playlist::setName(string name) { this->name = std::move(name); }
 
 string Playlist::getName() { return name; }
 
-void Playlist::add_music() {}
+void Playlist::add_music(Music* music) {
+  music_list.push_back(music);
+}
 
-void Playlist::remove_music() {}
+void Playlist::remove_music(int index) {
+  music_list.remove(index);
+}
 
-/*Music Playlist::next_music(){
+Music* Playlist::next_music(){
+  Music* to_play = music_list.get(on_queue)->value;
+  if(on_queue == music_list.getSize() - 1){
+    on_queue = 0;
+    to_play = nullptr;
+  } else {
+    ++on_queue;
+  }
 
-}*/
+  return to_play;
+}
 
-void Playlist::print_musics() {}
+void Playlist::print(int index) {
+  cout << music_list.get(index)->value << '\n';
+  if(index < music_list.getSize()){
+    print(++index);
+  }
+}
