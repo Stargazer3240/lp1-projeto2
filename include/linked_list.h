@@ -27,6 +27,8 @@ class List {
 
   ~List() { empty(); }
 
+  int getSize() const { return size; }
+
   bool search(int index) {
     if (index < 0 || index >= size) {
       cout << "Out of index!" << '\n';
@@ -64,10 +66,12 @@ class List {
   void push_back(T value) {
     auto new_node = new Node<T>(value);
     if (size == 0) {
-      head = new_node;
+      head = tail = new_node;
+    } else {
+      tail->next = new_node;
+      tail = new_node;
+      new_node->value = value;
     }
-    tail = new_node;
-    new_node->value = value;
     ++size;
   }
 
@@ -75,16 +79,21 @@ class List {
     if (index < 0 || index >= size) {
       cout << "Out of index!" << '\n';
     } else if (search(index)) {
+      Node<T>* dummy = nullptr;
       if (index == 0) {
-        Node<T>* dummy = head;
+        dummy = head;
         head = head->next;
-        delete dummy;
       } else if (index == size - 1) {
-        Node<T>* dummy = get(index - 1);
-        tail = tail->next;
-        delete dummy;
+        dummy = get(index - 1);
+        tail = dummy;
+        dummy = tail->next;
       } else {
+        dummy = get(index);
+        Node<T>* previous_dummy = get(index - 1);
+        previous_dummy->next = dummy->next;
       }
+      //delete dummy->value;
+      delete dummy;
       --size;
     }
   }
