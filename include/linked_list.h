@@ -83,16 +83,11 @@ class List {
       if (index == 0) {
         dummy = head;
         head = head->next;
-      } else if (index == size - 1) {
-        dummy = get(index - 1);
-        tail = dummy;
-        dummy = tail->next;
-      } else {
+      }  else {
         dummy = get(index);
         Node<T>* previous_dummy = get(index - 1);
         previous_dummy->next = dummy->next;
       }
-      // delete dummy->value;
       delete dummy;
       --size;
     }
