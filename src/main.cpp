@@ -2,9 +2,9 @@
 //
 // SPDX-License-Identifier: MIT
 
-#include "linked_list.h"
-#include "music.h"
 #include "playlist.h"
+
+// Linked list test.
 /*
 template <typename T>
 void print(List<T>& lista) {
@@ -13,6 +13,7 @@ void print(List<T>& lista) {
   }
 }
 */
+
 int main() {
   // Linked list test.
   /*
@@ -44,7 +45,6 @@ int main() {
   lista.get(0)->value->add_music(&mus1);
   lista.get(0)->value->print();
   lista.get(0)->value->remove_music(0);
-  cout << '\n';
   lista.get(0)->value->print();
   cout << mus1;
 
