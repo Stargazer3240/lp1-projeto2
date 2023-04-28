@@ -13,6 +13,7 @@ include_directories(include)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 set(CMAKE_CXX_STANDARD 20)
 
+# Create compile_commands.json on ./build for usage with clang-tidy
 set(CMAKE_EXPORT_COMPILE_COMMANDS=ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "")
 
