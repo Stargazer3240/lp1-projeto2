@@ -27,7 +27,7 @@ class List {
 
   ~List() { empty(); }
 
-  int getSize() { return size; }
+  int getSize() const { return size; }
 
   bool search(int index) {
     if (index < 0 || index >= size) {
@@ -47,6 +47,23 @@ class List {
   }
 
   Node<T>* get(int index) {
+    if (index < 0 || index >= size) {
+      cout << "Out of index!" << '\n';
+    } else if (size != 0) {
+      Node<T>* iterator = head;
+      for (int i{0}; i < size; ++i) {
+        if (i == index) {
+          return iterator;
+        }
+        iterator = iterator->next;
+      }
+    } else {
+      cout << "Empty list!" << '\n';
+    }
+    return nullptr;
+  }
+
+  Node<T>* get(int index) const {
     if (index < 0 || index >= size) {
       cout << "Out of index!" << '\n';
     } else if (size != 0) {
@@ -83,7 +100,7 @@ class List {
       if (index == 0) {
         dummy = head;
         head = head->next;
-      }  else {
+      } else {
         dummy = get(index);
         Node<T>* previous_dummy = get(index - 1);
         previous_dummy->next = dummy->next;

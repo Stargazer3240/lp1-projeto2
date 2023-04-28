@@ -13,6 +13,16 @@ void Music::setTitle(string title) { this->title = std::move(title); }
 
 void Music::setArtist(string artist) { this->artist = std::move(artist); }
 
-string Music::getTitle() { return title; }
+string Music::getTitle() const { return title; }
 
-string Music::getArtist() { return artist; }
+string Music::getArtist() const { return artist; }
+
+ostream& operator<<(ostream& out, const Music& music) {
+  return out << "  Title: " << music.getTitle()
+             << "\n  Artist: " << music.getArtist() << '\n';
+}
+
+ostream& operator<<(ostream& out, const Music* music) {
+  return out << "Title: " << music->getTitle()
+             << "\n   Artist: " << music->getArtist() << '\n';
+}

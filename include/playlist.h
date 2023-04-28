@@ -20,12 +20,12 @@ class Playlist {
 
   void setName(string name);
 
-  string getName();
+  string getName() const;
 
   void add_music(Music* music);
   void remove_music(int index);
   Music* next_music();
-  void print(int index = 0);
+  void print(int index = 0) const;
 };
 
 #endif
