@@ -14,7 +14,7 @@
 template <typename T>
 class Node {
  public:
-  T value; /*!< Data piece of the node. */
+  T value;    /*!< Data piece of the node. */
   Node* next; /*!< Pointer to the next node in the list. */
 
   /*!

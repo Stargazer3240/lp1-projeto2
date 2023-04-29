@@ -18,11 +18,10 @@ using std::string, std::ostream, std::cout;
  */
 class Music {
  private:
-  string title; /*!< The title of the music. */
+  string title;  /*!< The title of the music. */
   string artist; /*!< The artist of the music. */
 
  public:
-
   /*!
    * @brief A constructor.
    *

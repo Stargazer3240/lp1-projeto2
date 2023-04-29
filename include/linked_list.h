@@ -21,11 +21,10 @@ template <typename T>
 class List {
  private:
   Node<T>* head; /*!< The first node in the list. */
-  Node<T>* tail; /*!< The last node in the list. Its next is always a nullptr. */
-  int size; /*!< The size of the linked list. */
+  Node<T>* tail; /*!< The last node in the list. Always points to nullptr */
+  int size;      /*!< The size of the linked list. */
 
  public:
-
   /*!
    * @brief A constructor.
    *
@@ -57,7 +56,7 @@ class List {
    * @brief Search if there is a node at the input index.
    *
    * This method uses a linear search to check if the input index can be
-   * found. 
+   * found.
    * @param index an integer index of the desired search.
    * @return True or False as the result of the search.
    */
