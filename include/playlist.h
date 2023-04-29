@@ -16,9 +16,9 @@
  */
 class Playlist {
  private:
-  string name; /*!< The name of the playlist. */
+  string name;             /*!< The name of the playlist. */
   List<Music*> music_list; /*!< A list of musics. */
-  int on_queue; /*!< The index of the next song to be played. */
+  int on_queue;            /*!< The index of the next song to be played. */
 
  public:
   /*!
