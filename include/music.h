@@ -14,7 +14,7 @@ using std::string, std::ostream, std::cout;
 /*!
  * @brief A class that represents a music.
  *
- * A music is made of a Title and an Artist.
+ * A music is made of a title and an artist.
  */
 class Music {
  private:
@@ -32,10 +32,10 @@ class Music {
   /*!
    * @brief A constructor.
    *
-   * Constructor that receives the title and the arstist of the music.
+   * Constructor that receives a title and an arstist.
    * @see title; artist
-   * @param title a string that represents the title of the music.
-   * @param artist a string that represents the artist of the music.
+   * @param title a string that represents a title.
+   * @param artist a string that represents an artist.
    */
   Music(string title, string artist);
 
@@ -44,7 +44,7 @@ class Music {
    *
    * Sets the title of the music.
    * @see title
-   * @param title a string that represents the title of the music.
+   * @param title a string that represents a title.
    */
   void setTitle(string title);
 
@@ -53,7 +53,7 @@ class Music {
    *
    * Sets the artist of the music.
    * @see artist
-   * @param artist a string that represents the artist of the music.
+   * @param artist a string that represents an artist.
    */
   void setArtist(string artist);
 
@@ -78,9 +78,9 @@ class Music {
   /*!
    * @brief An I/O operator overloading.
    *
-   * Sends the title and the artist of the music to the ostream.
-   * @param out The output stream.
-   * @param music A reference to a music.
+   * Sends the title and the artist of a music to the ostream.
+   * @param out the output stream.
+   * @param music a reference to a music.
    * @see title; artist; getTitle(); getArtist()
    * @return The title and the artist to the ostream.
    */
@@ -89,9 +89,9 @@ class Music {
   /*!
    * @brief An I/O operator overloading.
    *
-   * Sends the title and the artist of the music to the ostream.
-   * @param out The output stream.
-   * @param music A pointer to a music.
+   * Sends the title and the artist of a music to the ostream.
+   * @param out the output stream.
+   * @param music a pointer to a music.
    * @see title; artist; getTitle(); getArtist()
    * @return The title and the artist to the ostream.
    */

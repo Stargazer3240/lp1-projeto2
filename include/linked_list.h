@@ -16,6 +16,7 @@ using std::cout;
  *
  * A linked list is a data structure made of a head and a tail, with the head
  * being the first node in the list and the tail the last one.
+ * @see Node
  */
 template <typename T>
 class List {
@@ -28,7 +29,7 @@ class List {
   /*!
    * @brief A constructor.
    *
-   * Creates an empty linked list which head and tails are nullptrs.
+   * Creates an empty linked list whose head and tails are nullptrs.
    */
   List() {
     this->head = nullptr;
@@ -53,11 +54,11 @@ class List {
   int getSize() const { return size; }
 
   /*!
-   * @brief Search if there is a node at the input index.
+   * @brief Search if there is a node at an input index.
    *
-   * This method uses a linear search to check if the input index can be
+   * This method uses a linear search to check if an input index can be
    * found.
-   * @param index an integer index of the desired search.
+   * @param index the integer index of the desired node.
    * @return True or False as the result of the search.
    */
   bool search(int index) {
@@ -78,11 +79,11 @@ class List {
   }
 
   /*!
-   * @brief Get a pointer to the corresponding node of the index, if any.
+   * @brief Gets a pointer to the corresponding node of an index, if any.
    *
    * This method uses a linear search to check if the input index can be
    * found. If so, returns a pointer to it, if not, returns a nullptr.
-   * @param index an integer index of the desired search.
+   * @param index the integer index of the desired node.
    * @return A pointer to the linear search result.
    */
   Node<T>* get(int index) {
@@ -103,11 +104,11 @@ class List {
   }
 
   /*!
-   * @brief Get a const pointer to the corresponding node of the index, if any.
+   * @brief Gets a const pointer to the corresponding node of the index, if any.
    *
    * This method uses a linear search to check if the input index can be
    * found. If so, returns a const pointer to it, if not, returns a nullptr.
-   * @param index an integer index of the desired search.
+   * @param index the integer index of the desired node.
    * @return A const pointer to the linear search result.
    */
   Node<T>* get(int index) const {
@@ -130,10 +131,10 @@ class List {
   /*!
    * @brief Inserts a value at the end of the linked list.
    *
-   * This method creates a node using dynamic allocation and insert it at the
+   * This method creates a node using dynamic allocation and inserts it at the
    * end of the list, while also incrementing the list's size.
    * @see size; tail;
-   * @param value A generic value that will be inserted at the end of the list.
+   * @param value a generic value that will be inserted at the end of the list.
    */
   void push_back(T value) {
     auto new_node = new Node<T>(value);
@@ -148,13 +149,13 @@ class List {
   }
 
   /*!
-   * @brief Removes a node and its content from the linked list.
+   * @brief Removes a node from the linked list.
    *
    * This method checks if there is a node at set index and removes it from the
    * list if true, releasing it from the heap, while also decreasing the list's
    * size.
    * @see head; size; search(); get()
-   * @param index an integer index of the desired node to remove.
+   * @param index the integer index of the desired node to remove.
    */
   void remove(int index) {
     if (index < 0 || index >= size) {
