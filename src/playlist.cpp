@@ -29,10 +29,10 @@ Music Playlist::next_music() {
   if (on_queue < music_list.getSize() - 1) {
     ++on_queue;
     return *to_play;
-  } else {
-    Music empty;
-    return empty;
   }
+
+  Music empty;
+  return empty;
 }
 
 void Playlist::print(int index) const {
