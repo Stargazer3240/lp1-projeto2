@@ -36,7 +36,7 @@ class Playlist {
    * Constructor that receives a name and a list of musics.
    * @see name; music_list
    * @param name a string that represents a name.
-   * @param music_list a list of musics.
+   * @param music_list a const reference to a linked list of musics.
    */
   Playlist(string name, const List<Music*>& music_list);
 
@@ -81,7 +81,7 @@ class Playlist {
    * @brief Removes a music from the list of music.
    *
    * This method uses linked list's remove method to remove a music
-   * at a certain position from the list of music.
+   * at a certain position from the list of musics.
    * @param index the integer index of the desired music to remove.
    * @see List::remove(); music_list
    */
@@ -92,7 +92,7 @@ class Playlist {
    *
    * This method checks the index of the next music on queue and gives
    * the music that will be played. If already in the end of queue, returns
-   * a nullptr and resets the queue to the beginning.
+   * a nullptr.
    * @see on_queue; music_list; List::get()
    * @return A pointer to the next music to be played.
    */
@@ -101,17 +101,33 @@ class Playlist {
   /*!
    * @brief Prints all the musics from the playlist.
    *
-   * This method checks the index of the next music on queue and gives
-   * the music that will be played. If already in the end of queue, returns
-   * a nullptr and resets the queue to the beggining.
+   * This method prints all the musics in the playlist's list of musics.    
    * @param index optional integer parameter of the index of the first music to
    * start printing from. Defaults to the beginning of the list.
    * @see music_list; List::get(); List::getSize()
    */
   void print(int index = 0) const;
 
+  /*!
+   * @brief An I/O operator overloading.
+   *
+   * Sends the playlist name to the ostream.
+   * @param out the output stream.
+   * @param playlist a const reference to a playlist.
+   * @see name; getName() 
+   * @return The name to the ostream.
+   */
   friend ostream& operator<<(ostream& out, const Playlist& playlist);
 
+  /*!
+   * @brief An I/O operator overloading.
+   *
+   * Sends the playlist name to the ostream.
+   * @param out the output stream.
+   * @param playlist a const pointer to a playlist.
+   * @see name; getName() 
+   * @return The name to the ostream.
+   */
   friend ostream& operator<<(ostream& out, const Playlist* playlist);
 };
 

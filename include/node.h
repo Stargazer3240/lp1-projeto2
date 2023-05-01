@@ -20,9 +20,9 @@ class Node {
   /*!
    * @brief A constructor.
    *
-   * Creates a node with a generic input value and points next to a nullptr.
-   * @param value a generic value that represents the data that will be inserted
-   * in the node.
+   * Creates a node with a generic value whose next points to a nullptr.
+   * @param value a generic value that represents the data that will be
+   * inserted in the node.
    */
   explicit Node(T value) {
     this->value = value;

@@ -80,7 +80,7 @@ class Music {
    *
    * Sends the title and the artist of a music to the ostream.
    * @param out the output stream.
-   * @param music a reference to a music.
+   * @param music a const reference to a music.
    * @see title; artist; getTitle(); getArtist()
    * @return The title and the artist to the ostream.
    */
@@ -91,7 +91,7 @@ class Music {
    *
    * Sends the title and the artist of a music to the ostream.
    * @param out the output stream.
-   * @param music a pointer to a music.
+   * @param music a const pointer to a music.
    * @see title; artist; getTitle(); getArtist()
    * @return The title and the artist to the ostream.
    */
