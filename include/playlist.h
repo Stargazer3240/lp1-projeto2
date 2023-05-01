@@ -101,7 +101,7 @@ class Playlist {
   /*!
    * @brief Prints all the musics from the playlist.
    *
-   * This method prints all the musics in the playlist's list of musics.    
+   * This method prints all the musics in the playlist's list of musics.
    * @param index optional integer parameter of the index of the first music to
    * start printing from. Defaults to the beginning of the list.
    * @see music_list; List::get(); List::getSize()
@@ -114,7 +114,7 @@ class Playlist {
    * Sends the playlist name to the ostream.
    * @param out the output stream.
    * @param playlist a const reference to a playlist.
-   * @see name; getName() 
+   * @see name; getName()
    * @return The name to the ostream.
    */
   friend ostream& operator<<(ostream& out, const Playlist& playlist);
@@ -125,7 +125,7 @@ class Playlist {
    * Sends the playlist name to the ostream.
    * @param out the output stream.
    * @param playlist a const pointer to a playlist.
-   * @see name; getName() 
+   * @see name; getName()
    * @return The name to the ostream.
    */
   friend ostream& operator<<(ostream& out, const Playlist* playlist);

@@ -148,7 +148,8 @@ void list_musics_playlist(const List<Playlist*>& playlists) {
   }
 }
 
-void add_music_playlist(List<Playlist*>& playlists, const List<Music*>& musics) {
+void add_music_playlist(List<Playlist*>& playlists,
+                        const List<Music*>& musics) {
   cout << "What is the index of the Playlist you want? ";
   int playlist_index;
   cin >> playlist_index;
@@ -181,7 +182,8 @@ void add_music_playlist(List<Playlist*>& playlists, const List<Music*>& musics) 
   }
 }
 
-void remove_music_playlist(List<Playlist*>& playlists, const List<Music*>& musics) {
+void remove_music_playlist(List<Playlist*>& playlists,
+                           const List<Music*>& musics) {
   cout << "What is the index of the Playlist you want? ";
   int playlist_index;
   cin >> playlist_index;
@@ -288,9 +290,11 @@ bool main_menu(List<Playlist*>& playlists, List<Music*>& musics) {
 
   switch (index) {
     case 1:
-      while (music_menu(playlists, musics)) {}
+      while (music_menu(playlists, musics)) {
+      }
     case 2:
-      while (playlist_menu(playlists, musics)) {}
+      while (playlist_menu(playlists, musics)) {
+      }
     case 0:
       return false;
     default:
