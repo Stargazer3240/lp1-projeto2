@@ -20,5 +20,4 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "")
 add_executable(program 
                src/main.cpp
                src/music.cpp
-               src/playlist.cpp
-               src/interface.cpp)
+               src/playlist.cpp)

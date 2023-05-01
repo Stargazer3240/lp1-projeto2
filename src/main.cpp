@@ -4,6 +4,8 @@
 
 #include "playlist.h"
 
+using std::cin, std::getline;
+
 // Linked list test.
 /*
 template <typename T>
@@ -37,10 +39,11 @@ int main() {
     print(lista);
   */
 
+
   // Playlist and Music test.
-  List<Playlist*> system;
-  interface();
   /*  
+  List<Playlist*> system;
+
   Playlist play1("As 100 Melhores do Samba");
   Playlist play2("Alternative Metal");
   Music mus1("O mundo é um moinho", "Cartola");
@@ -79,24 +82,90 @@ int main() {
   cout << '\n' << mus1 << '\n' << mus2 << '\n' << mus3 << '\n' << mus4 << '\n' << mus5 << '\n';
 */  
 
-  while(true){
-    cout << "IMDJ - Music Manager\n1 - Manage Musics\n2 - Manage Playlists\n" 
-        "Manage Musics in a Playlist\n0 - Exit\nChoose one option: ";
-    int index;
-    cin >> index;
 
-    switch(index) {
+  List<Playlist*> playlists;
+  List<Music*> musics;
+
+  // Test condition of each while.
+  bool loop0{true};
+  bool loop1{true};
+  bool loop2{true};
+
+  // Switch index for each loop.
+  int index0{0};
+  int index1{0};
+  int index2{0};
+
+  string title{""};
+  string artist{""};
+
+  // User Interface
+  while(loop0){
+    cout << "IMDJ - Main Menu\n1 - Manage Musics\n2 - Manage Playlists\n" 
+        "3 - Manage Musics in a Playlist\n0 - Exit\nChoose an option: ";
+    cin >> index0;
+
+    switch(index0) {
       case 1:
-        system.get(0); 
-        break;
-      case 2:
+        loop1 = true;
+        while(loop1){
+          cout << "IMDJ - Manage Musics Menu\n1 - Register Music\n"
+            "2 - Remove Music\n3 - List Musics\n0 - Return\n"
+            "Choose an option: ";
+          cin >> index1;
 
-        break;
-      case 3:
-        
+          switch(index1){
+            case 1:
+              cout << "What is the title of the Music?\n";
+              getline(cin, title);
+              cout << "What is the artist of the MUsic?\n";
+              getline(cin, artist);
+              musics.push_back(); 
+              break;
+            case 2:
+              break;
+            case 3:
+              break;
+            case 0:
+              loop1 = false;
+              break;
+            default:
+              cout << "Invalid number!\n";
+              break;
+          }
+        }
+      case 2:
+        loop2 = true; 
+        while(loop2){
+          cout << "IMDJ - Manage Playlists Menu\n1 - Create Playlist\n"
+            "2 - Delete Playlist\n3 - List Playlists\n4 - Add Music to a Playlist"
+            "\n5 - Remove Music from a Playlist\n6 - Move Music from a Playlist"
+            "\n7 - Show next Music to play in a Playlist\n0 - Return";
+          cin >> index2;
+
+          switch(index2){
+            case 1:
+              break;
+            case 2:
+              break;
+            case 3:
+              break;
+            case 4:
+              break;
+            case 5:
+              break;
+            case 0:
+              loop2 = false;
+              break;
+            default:
+              cout << "Invalid number!\n";
+              break;
+          }
+        }
         break;
       case 0:
-        return;
+        loop0 = false;
+        break;
       default: 
         cout << "Invalid number!\n";
         break;
