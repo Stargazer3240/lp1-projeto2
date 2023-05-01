@@ -17,7 +17,8 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_EXPORT_COMPILE_COMMANDS=ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "")
 
-add_executable( program 
-                src/main.cpp
-                src/music.cpp
-                src/playlist.cpp)
+add_executable(program 
+               src/main.cpp
+               src/music.cpp
+               src/playlist.cpp
+               src/interface.cpp)
