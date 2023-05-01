@@ -6,43 +6,21 @@
 
 using std::cin, std::getline;
 
-// Linked list test.
-/*
-template <typename T>
-void print(List<T>& lista) {
-  for (int i{0}; i < lista.getSize(); ++i) {
-    cout << lista.get(i)->value << '\n';
-  }
+// Creates a music on Heap for usage with List::push_back.
+Music* new_music(string title, string artist){
+  auto new_music = new Music(std::move(title), std::move(artist));
+  return new_music;
 }
-*/
 
-int main() {
-  // Linked list test.
-  /*
-    List<int> lista;
-    lista.push_back(5);
-    lista.push_back(6);
-    lista.push_back(10);
-    print(lista);
-    cout << '\n';
-    lista.remove(0);
-    print(lista);
-    cout << '\n';
-    lista.remove(1);
-    print(lista);
-    cout << '\n';
-    lista.empty();
-    lista.push_back(5);
-    lista.push_back(6);
-    lista.push_back(10);
-    lista.remove(1);
-    print(lista);
-  */
+// Creates a playlist on Heap for usage with List::push_back.
+Playlist* new_playlist(string name){
+  auto new_playlist = new Playlist(std::move(name));
+  return new_playlist;
+}
 
-
-  // Playlist and Music test.
-  /*  
-  List<Playlist*> system;
+int main() { 
+  List<Playlist*> playlists;
+  List<Music*> musics;
 
   Playlist play1("As 100 Melhores do Samba");
   Playlist play2("Alternative Metal");
@@ -52,39 +30,21 @@ int main() {
   Music mus4("Aerials", "System of a Down");
   Music mus5("Dead Memories", "Slipknot");
 
+  playlists.push_back(&play1);
+  playlists.push_back(&play2);
+  musics.push_back(&mus1);
+  musics.push_back(&mus2);
+  musics.push_back(&mus3);
+  musics.push_back(&mus4);
+  musics.push_back(&mus5);
 
-  system.push_back(&play1);
-  system.push_back(&play2);
-
-  cout << system.get(0)->value->getName() << '\n';
-  system.get(0)->value->add_music(&mus1);
-  system.get(0)->value->add_music(&mus4);
-  system.get(0)->value->add_music(&mus2);
-  system.get(0)->value->print();
-  for(int i{0}; i < 4; ++i){
-    cout << system.get(0)->value->next_music() << '\n';
-  }
-
-  system.get(0)->value->remove_music(1);
-  cout << '\n';
-  system.get(0)->value->print();
-
-  cout << '\n' << system.get(1)->value->getName() << '\n';
-  system.get(1)->value->add_music(&mus3);
-  system.get(1)->value->add_music(&mus4);
-  system.get(1)->value->add_music(&mus5);
-  system.get(1)->value->add_music(&mus2);
-  system.get(1)->value->print();
-  cout << '\n';
-  system.get(1)->value->remove_music(3);
-  system.get(1)->value->print();
-
-  cout << '\n' << mus1 << '\n' << mus2 << '\n' << mus3 << '\n' << mus4 << '\n' << mus5 << '\n';
-*/  
-
-
-  List<Playlist*> playlists;
-  List<Music*> musics;
+  playlists.get(0)->value->add_music(&mus1);
+  playlists.get(0)->value->add_music(&mus4);
+  playlists.get(0)->value->add_music(&mus2);
+  playlists.get(1)->value->add_music(&mus3);
+  playlists.get(1)->value->add_music(&mus4);
+  playlists.get(1)->value->add_music(&mus5);
+  playlists.get(1)->value->add_music(&mus2);
 
   // Test condition of each while.
   bool loop0{true};
@@ -96,35 +56,69 @@ int main() {
   int index1{0};
   int index2{0};
 
-  string title{""};
-  string artist{""};
+  // Placeholders for classes attributes.
+  string title;
+  string artist;
+  string name;
 
-  // User Interface
+  // Pointer for usage with Playlist::next_music().
+  Music* to_play;
+
+  // Indexes for User Input.
+  int user_index{0};
+  char confirmation{'\0'};
+
+  // User Interface.
   while(loop0){
     cout << "IMDJ - Main Menu\n1 - Manage Musics\n2 - Manage Playlists\n" 
-        "3 - Manage Musics in a Playlist\n0 - Exit\nChoose an option: ";
+        "0 - Exit\nChoose an option: ";
     cin >> index0;
 
     switch(index0) {
       case 1:
         loop1 = true;
         while(loop1){
-          cout << "IMDJ - Manage Musics Menu\n1 - Register Music\n"
+          cout << "IMDJ - Musics Menu\n1 - Register Music\n"
             "2 - Remove Music\n3 - List Musics\n0 - Return\n"
             "Choose an option: ";
           cin >> index1;
 
           switch(index1){
             case 1:
-              cout << "What is the title of the Music?\n";
+              cout << "What is the title of the Music? ";
+              cin.ignore();
               getline(cin, title);
-              cout << "What is the artist of the MUsic?\n";
+              cout << "What is the artist of the Music? ";
               getline(cin, artist);
-              musics.push_back(); 
+              musics.push_back(new_music(title, artist)); 
               break;
             case 2:
+              cout << "What is the index of the Music to remove? ";
+              cin >> user_index;
+              if(user_index < 1 or user_index > musics.getSize()){
+                cout << "Invalid index!\n";
+              } else {
+                --user_index;
+                cout << "This will remove Music:\n" << musics.get(user_index)->value <<
+                  "Are you sure [y/n]? ";
+                cin >> confirmation;
+                if(confirmation == 'y') {
+                  musics.remove(user_index);
+                  cout << "Music removed!\n";
+                } else if(confirmation == 'n') {
+                  cout << "Operation cancelled.\n";
+                } else {
+                  cout << "Invalid operation.\n";
+                }
+              }
               break;
             case 3:
+              if(musics.getSize() == 0){
+                cout << "No Music on the system!\n";
+              } else {
+                cout << "List of Musics:\n";
+                musics.print();
+              }
               break;
             case 0:
               loop1 = false;
@@ -134,25 +128,84 @@ int main() {
               break;
           }
         }
+        break;
       case 2:
         loop2 = true; 
         while(loop2){
-          cout << "IMDJ - Manage Playlists Menu\n1 - Create Playlist\n"
-            "2 - Delete Playlist\n3 - List Playlists\n4 - Add Music to a Playlist"
-            "\n5 - Remove Music from a Playlist\n6 - Move Music from a Playlist"
-            "\n7 - Show next Music to play in a Playlist\n0 - Return";
+          cout << "IMDJ - Playlists Menu\n1 - Create Playlist\n"
+            "2 - Delete Playlist\n3 - List Playlists\n4 - List Musics from a Playlist"
+            "\n5 - Add Music to a Playlist\n6 - Remove Music from a Playlist\n"
+            "7 - Move Music from a Playlist\n"
+            "8 - Show next Music to play in a Playlist\n0 - Return\n"
+            "Choose an option: ";
           cin >> index2;
 
           switch(index2){
             case 1:
+              cout << "What is the name of the Playlist? ";
+              cin.ignore();
+              getline(cin, name);
+              playlists.push_back(new_playlist(name)); 
               break;
             case 2:
+              cout << "What is the index of the Playlist to remove? ";
+              cin >> user_index;
+              if(user_index < 1 or user_index > playlists.getSize()){
+                cout << "Invalid index!\n";
+              } else {
+                --user_index;
+                cout << "This will remove Playlist:\n" << playlists.get(user_index)->value->getName() <<
+                  "\nAre you sure [y/n]? ";
+                cin >> confirmation;
+                if(confirmation == 'y') {
+                  playlists.remove(user_index);
+                  cout << "Playlist removed!\n";
+                } else if(confirmation == 'n') {
+                  cout << "Operation cancelled.\n";
+                } else {
+                  cout << "Invalid operation.\n";
+                }
+              }
               break;
             case 3:
+              if(playlists.getSize() == 0){
+                cout << "No Playlist on the system!\n";
+              } else {
+                cout << "List of Playlists:\n";
+                playlists.print();
+              }
               break;
             case 4:
+              cout << "What is the index of the Playlist you want? ";
+              cin >> user_index;
+              if(user_index < 1 or user_index > playlists.getSize()){
+                cout << "Invalid index!\n";
+              } else {
+                --user_index;
+                playlists.get(user_index)->value->print(); 
+              }
               break;
             case 5:
+              break;
+            case 6:
+              break;
+            case 7:
+              break;
+            case 8:
+              cout << "What is the index of the Playlist you want? ";
+              cin >> user_index;
+              if(user_index < 1 or user_index > playlists.getSize()){
+                cout << "Invalid index!\n";
+              } else {
+                --user_index;
+                to_play = playlists.get(user_index)->value->next_music();
+                if(to_play == nullptr){
+                  cout << "No Musics on this queue.\n";
+                } else {
+                  cout << "#" << playlists.get(user_index)->value->getQueue() << " On Queue:\n";
+                  cout << to_play; 
+                }
+              }
               break;
             case 0:
               loop2 = false;
