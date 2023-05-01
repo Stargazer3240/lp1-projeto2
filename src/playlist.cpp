@@ -23,23 +23,23 @@ void Playlist::add_music(Music* music) { music_list.push_back(music); }
 
 void Playlist::remove_music(int index) { music_list.remove(index); }
 
-Music* Playlist::next_music() {
+Music Playlist::next_music() {
   Music* to_play = music_list.get(on_queue)->value;
-  if (on_queue == music_list.getSize() - 1) {
-    on_queue = 0;
-    to_play = nullptr;
-  } else {
+  cout << "#" << on_queue + 1 << " On Queue:\n";
+  if (on_queue < music_list.getSize() - 1) {
     ++on_queue;
+    return *to_play;
+  } else {
+    Music empty;
+    return empty;
   }
-
-  return to_play;
 }
 
 void Playlist::print(int index) const {
   if (music_list.getSize() == 0) {
     cout << "Playlist is empty!\n";
   } else {
-    cout << index << ". " << music_list.get(index)->value << '\n';
+    cout << index + 1 << ".\n" << music_list.get(index)->value << '\n';
     if (index < music_list.getSize() - 1) {
       print(++index);
     }

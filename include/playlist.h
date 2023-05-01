@@ -87,7 +87,7 @@ class Playlist {
    * @see on_queue; music_list; List::get()
    * @return A pointer to the next music to be played.
    */
-  Music* next_music();
+  Music next_music();
 
   /*!
    * @brief Prints all the musics from the playlist.

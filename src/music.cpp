@@ -18,11 +18,11 @@ string Music::getTitle() const { return title; }
 string Music::getArtist() const { return artist; }
 
 ostream& operator<<(ostream& out, const Music& music) {
-  return out << "  Title: " << music.getTitle()
-             << "\n  Artist: " << music.getArtist() << '\n';
+  return out << "Title: " << music.getTitle()
+             << "\nArtist: " << music.getArtist() << '\n';
 }
 
 ostream& operator<<(ostream& out, const Music* music) {
   return out << "Title: " << music->getTitle()
-             << "\n   Artist: " << music->getArtist() << '\n';
+             << "\nArtist: " << music->getArtist() << '\n';
 }

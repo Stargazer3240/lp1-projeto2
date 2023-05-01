@@ -38,7 +38,7 @@ int main() {
   */
 
   // Playlist and Music test.
-  /*
+  
   Playlist play1("As 100 Melhores do Samba");
   Playlist play2("Alternative Metal");
   Music mus1("O mundo é um moinho", "Cartola");
@@ -57,6 +57,10 @@ int main() {
   system.get(0)->value->add_music(&mus4);
   system.get(0)->value->add_music(&mus2);
   system.get(0)->value->print();
+  for(int i{0}; i < 4; ++i){
+    cout << system.get(0)->value->next_music() << '\n';
+  }
+/*
   system.get(0)->value->remove_music(1);
   cout << '\n';
   system.get(0)->value->print();
@@ -71,7 +75,8 @@ int main() {
   system.get(1)->value->remove_music(3);
   system.get(1)->value->print();
 
-  cout << '\n' << mus1 << '\n' << mus2 << '\n' << mus3 << '\n' << mus4 << '\n' << mus5;
-  */
+  cout << '\n' << mus1 << '\n' << mus2 << '\n' << mus3 << '\n' << mus4 << '\n' << mus5 << '\n';
+*/  
+
   return 0;
 }
