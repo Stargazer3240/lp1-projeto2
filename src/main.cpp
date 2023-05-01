@@ -4,7 +4,7 @@
 
 #include "interface.h"
 
-int main() { 
+int main() {
   List<Playlist*> playlists;
   List<Music*> musics;
 
@@ -33,7 +33,8 @@ int main() {
   playlists.get(1)->value->add_music(&mus2);
 
   // User Interface.
-  while(main_menu(playlists, musics));
+  while (main_menu(playlists, musics))
+    ;
 
   return 0;
 }

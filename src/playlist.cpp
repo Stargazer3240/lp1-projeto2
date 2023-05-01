@@ -48,10 +48,10 @@ void Playlist::print(int index) const {
   }
 }
 
-ostream& operator<<(ostream& out, const Playlist& playlist){
+ostream& operator<<(ostream& out, const Playlist& playlist) {
   return out << "" << playlist.getName() << '\n';
 }
 
-ostream& operator<<(ostream& out, const Playlist* playlist){
+ostream& operator<<(ostream& out, const Playlist* playlist) {
   return out << "" << playlist->getName() << '\n';
 }

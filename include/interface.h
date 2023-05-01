@@ -16,7 +16,7 @@ bool is_index_valid(List<T*>& list, int index) {
 
 bool main_menu(List<Playlist*>& playlists, List<Music*> musics);
 
-bool music_menu(List<Playlist*>& playlists, List<Music*>& musics); 
+bool music_menu(List<Playlist*>& playlists, List<Music*>& musics);
 void register_music(List<Music*>& musics);
 void remove_music(List<Playlist*>& playlists, List<Music*>& musics);
 void list_musics(List<Music*>& musics);
