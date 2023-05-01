@@ -41,7 +41,7 @@ void Playlist::print(int index) const {
   if (music_list.getSize() == 0) {
     cout << "Playlist is empty!\n";
   } else {
-    cout << index + 1 << ".\n" << music_list.get(index)->value << '\n';
+    cout << index + 1 << ". " << music_list.get(index)->value;
     if (index < music_list.getSize() - 1) {
       print(++index);
     }
@@ -49,9 +49,9 @@ void Playlist::print(int index) const {
 }
 
 ostream& operator<<(ostream& out, const Playlist& playlist){
-  return out << "Name: " << playlist.getName() << '\n';
+  return out << "" << playlist.getName() << '\n';
 }
 
 ostream& operator<<(ostream& out, const Playlist* playlist){
-  return out << "Name: " << playlist->getName() << '\n';
+  return out << "" << playlist->getName() << '\n';
 }

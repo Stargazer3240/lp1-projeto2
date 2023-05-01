@@ -19,10 +19,10 @@ string Music::getArtist() const { return artist; }
 
 ostream& operator<<(ostream& out, const Music& music) {
   return out << "Title: " << music.getTitle()
-             << "\nArtist: " << music.getArtist() << '\n';
+             << " | Artist: " << music.getArtist() << '\n';
 }
 
 ostream& operator<<(ostream& out, const Music* music) {
   return out << "Title: " << music->getTitle()
-             << "\nArtist: " << music->getArtist() << '\n';
+             << " | Artist: " << music->getArtist() << '\n';
 }

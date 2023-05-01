@@ -190,7 +190,7 @@ class List {
 
   void print() {
     for (int i{0}; i < size; ++i) {
-      cout << i+1 << ".\n" << get(i)->value;
+      cout << i+1 << ". " << get(i)->value;
     }
   }
 };
