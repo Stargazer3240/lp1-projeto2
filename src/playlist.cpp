@@ -19,6 +19,8 @@ void Playlist::setName(string name) { this->name = std::move(name); }
 
 string Playlist::getName() const { return name; }
 
+List<Music*> getMusics() const { return music_list; }
+
 int Playlist::getQueue() const { return on_queue; }
 
 void Playlist::add_music(Music* music) { music_list.push_back(music); }

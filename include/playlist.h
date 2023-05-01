@@ -58,6 +58,8 @@ class Playlist {
    */
   string getName() const;
 
+  List<Music*> getMusics() const;
+
   /*!
    * @brief A getter.
    *
