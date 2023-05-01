@@ -50,6 +50,7 @@ class List {
    * @brief A getter.
    *
    * Get the size of the list.
+   * @return The size of the list.
    */
   int getSize() const { return size; }
 
@@ -184,6 +185,12 @@ class List {
   void empty() {
     for (int i{0}; i < size; ++i) {
       remove(i);
+    }
+  }
+
+  void print() {
+    for (int i{0}; i < size; ++i) {
+      cout << i+1 << ".\n" << get(i)->value;
     }
   }
 };
