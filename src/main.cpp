@@ -37,13 +37,15 @@ int main() {
     print(lista);
   */
 
+  // Playlist and Music test.
+  /*
   Playlist play1("As 100 Melhores do Samba");
-  Playlist play2("Bossa Nova Night");
-  Music mus1("M1", "A1");
-  Music mus2("M2", "A2");
-  Music mus3("M3", "A3");
-  Music mus4("M4", "A4");
-  Music mus5("M5", "A5");
+  Playlist play2("Alternative Metal");
+  Music mus1("O mundo é um moinho", "Cartola");
+  Music mus2("Saudosa Maloca", "Adoniran Barbosa");
+  Music mus3("Toxicity", "System of a Down");
+  Music mus4("Aerials", "System of a Down");
+  Music mus5("Dead Memories", "Slipknot");
 
   List<Playlist*> system;
 
@@ -52,23 +54,24 @@ int main() {
 
   cout << system.get(0)->value->getName() << '\n';
   system.get(0)->value->add_music(&mus1);
-  system.get(0)->value->add_music(&mus3);
   system.get(0)->value->add_music(&mus4);
+  system.get(0)->value->add_music(&mus2);
   system.get(0)->value->print();
   system.get(0)->value->remove_music(1);
   cout << '\n';
   system.get(0)->value->print();
 
   cout << '\n' << system.get(1)->value->getName() << '\n';
-  system.get(1)->value->add_music(&mus1);
-  system.get(1)->value->add_music(&mus2);
+  system.get(1)->value->add_music(&mus3);
+  system.get(1)->value->add_music(&mus4);
   system.get(1)->value->add_music(&mus5);
+  system.get(1)->value->add_music(&mus2);
   system.get(1)->value->print();
   cout << '\n';
-  system.get(1)->value->remove_music(1);
+  system.get(1)->value->remove_music(3);
   system.get(1)->value->print();
 
-  cout << '\n' << mus1 << mus2 << mus3 << mus4 << mus5;
-
+  cout << '\n' << mus1 << '\n' << mus2 << '\n' << mus3 << '\n' << mus4 << '\n' << mus5;
+  */
   return 0;
 }
