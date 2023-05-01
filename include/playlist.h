@@ -59,6 +59,15 @@ class Playlist {
   string getName() const;
 
   /*!
+   * @brief A getter.
+   *
+   * Gets the index of the next song to be played.
+   * @see on_queue
+   * @return The index of the next song to be played.
+   */
+  int getQueue() const;
+
+  /*!
    * @brief Adds a music to the list of music.
    *
    * This method uses linked list's push_back method to add a music
@@ -87,7 +96,7 @@ class Playlist {
    * @see on_queue; music_list; List::get()
    * @return A pointer to the next music to be played.
    */
-  Music next_music();
+  Music* next_music();
 
   /*!
    * @brief Prints all the musics from the playlist.
@@ -100,6 +109,10 @@ class Playlist {
    * @see music_list; List::get(); List::getSize()
    */
   void print(int index = 0) const;
+
+  friend ostream& operator<<(ostream& out, const Playlist& playlist);
+
+  friend ostream& operator<<(ostream& out, const Playlist* playlist);
 };
 
 #endif

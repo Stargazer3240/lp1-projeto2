@@ -19,20 +19,22 @@ void Playlist::setName(string name) { this->name = std::move(name); }
 
 string Playlist::getName() const { return name; }
 
+int Playlist::getQueue() const { return on_queue; }
+
 void Playlist::add_music(Music* music) { music_list.push_back(music); }
 
 void Playlist::remove_music(int index) { music_list.remove(index); }
 
-Music Playlist::next_music() {
-  Music* to_play = music_list.get(on_queue)->value;
-  cout << "#" << on_queue + 1 << " On Queue:\n";
-  if (on_queue < music_list.getSize() - 1) {
+Music* Playlist::next_music() {
+  Music* to_play;
+  if (on_queue < music_list.getSize()) {
+    to_play = music_list.get(on_queue)->value;
     ++on_queue;
-    return *to_play;
+  } else {
+    to_play = nullptr;
   }
 
-  Music empty;
-  return empty;
+  return to_play;
 }
 
 void Playlist::print(int index) const {
@@ -44,4 +46,12 @@ void Playlist::print(int index) const {
       print(++index);
     }
   }
+}
+
+ostream& operator<<(ostream& out, const Playlist& playlist){
+  return out << "Name: " << playlist.getName() << '\n';
+}
+
+ostream& operator<<(ostream& out, const Playlist* playlist){
+  return out << "Name: " << playlist->getName() << '\n';
 }
