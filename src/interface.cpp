@@ -50,7 +50,7 @@ void remove_music(List<Playlist*>& playlists, List<Music*>& musics) {
   }
 }
 
-void list_musics(List<Music*>& musics) {
+void list_musics(const List<Music*>& musics) {
   if (musics.getSize() == 0) {
     cout << "No Music on the system!\n";
   } else {
@@ -97,7 +97,7 @@ void create_playlist(List<Playlist*>& playlists) {
   cout << "Playlist created with success!\n";
 }
 
-void delete_playlist(List<Playlist*> playlists) {
+void delete_playlist(List<Playlist*>& playlists) {
   cout << "What is the index of the Playlist to delete? ";
   int index;
   cin >> index;
@@ -123,7 +123,7 @@ void delete_playlist(List<Playlist*> playlists) {
   }
 }
 
-void list_playlists(List<Playlist*>& playlists) {
+void list_playlists(const List<Playlist*>& playlists) {
   if (playlists.getSize() == 0) {
     cout << "No Playlist on the system!\n";
   } else {
@@ -133,7 +133,7 @@ void list_playlists(List<Playlist*>& playlists) {
   }
 }
 
-void list_musics_playlist(List<Playlist*>& playlists) {
+void list_musics_playlist(const List<Playlist*>& playlists) {
   cout << "What is the index of the Playlist you want? ";
   int index;
   cin >> index;
@@ -148,7 +148,7 @@ void list_musics_playlist(List<Playlist*>& playlists) {
   }
 }
 
-void add_music_playlist(List<Playlist*>& playlists, List<Music*> musics) {
+void add_music_playlist(List<Playlist*>& playlists, const List<Music*>& musics) {
   cout << "What is the index of the Playlist you want? ";
   int playlist_index;
   cin >> playlist_index;
@@ -181,7 +181,7 @@ void add_music_playlist(List<Playlist*>& playlists, List<Music*> musics) {
   }
 }
 
-void remove_music_playlist(List<Playlist*>& playlists, List<Music*> musics) {
+void remove_music_playlist(List<Playlist*>& playlists, const List<Music*>& musics) {
   cout << "What is the index of the Playlist you want? ";
   int playlist_index;
   cin >> playlist_index;
@@ -233,7 +233,7 @@ void next_on_playlist(List<Playlist*>& playlists) {
   }
 }
 
-bool playlist_menu(List<Playlist*>& playlists, List<Music*> musics) {
+bool playlist_menu(List<Playlist*>& playlists, const List<Music*>& musics) {
   cout << "IMDJ - Playlists Menu\n1 - Create Playlist\n"
           "2 - Delete Playlist\n3 - List Playlists\n4 - List Musics from a "
           "Playlist"
@@ -279,7 +279,7 @@ bool playlist_menu(List<Playlist*>& playlists, List<Music*> musics) {
   return true;
 }
 
-bool main_menu(List<Playlist*>& playlists, List<Music*> musics) {
+bool main_menu(List<Playlist*>& playlists, List<Music*>& musics) {
   cout << "IMDJ - Main Menu\n1 - Manage Musics\n2 - Manage Playlists\n"
           "0 - Exit\nChoose an option: ";
   int index;
@@ -288,11 +288,9 @@ bool main_menu(List<Playlist*>& playlists, List<Music*> musics) {
 
   switch (index) {
     case 1:
-      while (music_menu(playlists, musics))
-        ;
+      while (music_menu(playlists, musics)) {}
     case 2:
-      while (playlist_menu(playlists, musics))
-        ;
+      while (playlist_menu(playlists, musics)) {}
     case 0:
       return false;
     default:
