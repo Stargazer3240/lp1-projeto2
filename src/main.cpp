@@ -38,15 +38,37 @@ int main() {
   */
 
   Playlist play1("As 100 Melhores do Samba");
+  Playlist play2("Bossa Nova Night");
   Music mus1("M1", "A1");
-  List<Playlist*> lista;
-  lista.push_back(&play1);
-  cout << lista.get(0)->value->getName() << '\n';
-  lista.get(0)->value->add_music(&mus1);
-  lista.get(0)->value->print();
-  lista.get(0)->value->remove_music(0);
-  lista.get(0)->value->print();
-  cout << mus1;
+  Music mus2("M2", "A2");
+  Music mus3("M3", "A3");
+  Music mus4("M4", "A4");
+  Music mus5("M5", "A5");
+
+  List<Playlist*> system;
+
+  system.push_back(&play1);
+  system.push_back(&play2);
+
+  cout << system.get(0)->value->getName() << '\n';
+  system.get(0)->value->add_music(&mus1);
+  system.get(0)->value->add_music(&mus3);
+  system.get(0)->value->add_music(&mus4);
+  system.get(0)->value->print();
+  system.get(0)->value->remove_music(1);
+  cout << '\n';
+  system.get(0)->value->print();
+
+  cout << '\n' << system.get(1)->value->getName() << '\n';
+  system.get(1)->value->add_music(&mus1);
+  system.get(1)->value->add_music(&mus2);
+  system.get(1)->value->add_music(&mus5);
+  system.get(1)->value->print();
+  cout << '\n';
+  system.get(1)->value->remove_music(1);
+  system.get(1)->value->print();
+
+  cout << '\n' << mus1 << mus2 << mus3 << mus4 << mus5;
 
   return 0;
 }
