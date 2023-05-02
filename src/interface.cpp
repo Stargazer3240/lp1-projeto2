@@ -41,6 +41,13 @@ void remove_music(List<Playlist*>& playlists, List<Music*>& musics) {
     cin >> confirmation;
 
     if (confirmation == 'y') {
+      for(int i{0}; i < playlists.getSize(); ++i){
+        for(int j{0}; j < playlists.get(i)->value->getSize(); ++j){
+          if(playlists.get(i)->value->getMusics().get(j)->value == musics.get(index)->value){
+            playlists.get(i)->value->remove_music(j);
+          }
+        }
+      }
       musics.remove(index);
       cout << "Music removed!\n";
     } else if (confirmation == 'n') {
@@ -49,16 +56,7 @@ void remove_music(List<Playlist*>& playlists, List<Music*>& musics) {
       cout << "Invalid operation.\n";
     }
     
-    cout << '\n';
-
-    for(int i{0}; i < playlists.getSize(); ++i){
-      for(int j{0}; j < playlists.get(i)->value->getSize(); ++j){
-        if(playlists.get(i)->value->getMusics().get(j)->value == musics.get(index)->value){
-          playlists.get(i)->value->remove_music(j);
-        }
-      }
-
-    }
+    cout << '\n'; 
   }
 }
 
@@ -159,7 +157,7 @@ void list_musics_playlist(const List<Playlist*>& playlists) {
     cout << "Invalid index!\n\n";
   } else {
     --index;
-    cout << playlist.get(index)->value;
+    cout << playlists.get(index)->value;
     playlists.get(index)->value->print();
     cout << '\n';
   }

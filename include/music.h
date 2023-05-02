@@ -96,8 +96,6 @@ class Music {
    * @return The title and the artist to the ostream.
    */
   friend ostream& operator<<(ostream& out, const Music* music);
-
-  bool operator==(const Music* music);
 };
 
 #endif
