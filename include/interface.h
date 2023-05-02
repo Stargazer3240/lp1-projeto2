@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2023 Fabrício Moura Jácome
+//
+// SPDX-License-Identifier: MIT
+
 #include "playlist.h"
 
 using std::cin, std::getline;

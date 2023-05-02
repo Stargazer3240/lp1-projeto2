@@ -58,6 +58,13 @@ class Playlist {
    */
   string getName() const;
 
+  /*!
+   * @brief A getter.
+   *
+   * Gets the list of musics.
+   * @see music_list; List
+   * @return A reference to the list of musics of the playlist.
+   */
   List<Music*>& getMusics();
 
   /*!
@@ -69,6 +76,13 @@ class Playlist {
    */
   int getQueue() const;
 
+  /*!
+   * @brief A getter.
+   *
+   * Gets the size of the list of musics of the playlist.
+   * @see music_list; List::size;
+   * @return The size of the list of musics of the playlist.
+   */
   int getSize() const;
 
   /*!

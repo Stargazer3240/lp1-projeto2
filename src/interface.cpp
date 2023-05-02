@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2023 Fabrício Moura Jácome
+//
+// SPDX-License-Identifier: MIT
+
 #include "interface.h"
 
 // Creates a music on Heap for List::push_back usage in interface.
@@ -41,9 +45,13 @@ void remove_music(List<Playlist*>& playlists, List<Music*>& musics) {
     cin >> confirmation;
 
     if (confirmation == 'y') {
-      for(int i{0}; i < playlists.getSize(); ++i){
-        for(int j{0}; j < playlists.get(i)->value->getSize(); ++j){
-          if(playlists.get(i)->value->getMusics().get(j)->value == musics.get(index)->value){
+      // Run through all playlist's musics and also remove the music there.
+      // i runs through playlists and j runs through the musics of the ith
+      // playlist.
+      for (int i{0}; i < playlists.getSize(); ++i) {
+        for (int j{0}; j < playlists.get(i)->value->getSize(); ++j) {
+          if (playlists.get(i)->value->getMusics().get(j)->value ==
+              musics.get(index)->value) {
             playlists.get(i)->value->remove_music(j);
           }
         }
@@ -55,8 +63,8 @@ void remove_music(List<Playlist*>& playlists, List<Music*>& musics) {
     } else {
       cout << "Invalid operation.\n";
     }
-    
-    cout << '\n'; 
+
+    cout << '\n';
   }
 }
 
@@ -188,7 +196,8 @@ void add_music_playlist(List<Playlist*>& playlists,
         cout << "Invalid index!\n\n";
       } else {
         --music_index;
-        playlists.get(playlist_index)->value->add_music(musics.get(music_index)->value);
+        playlists.get(playlist_index)
+            ->value->add_music(musics.get(music_index)->value);
         cout << "Music added to playlist with success.\n\n";
       }
     }
@@ -216,7 +225,9 @@ void remove_music_playlist(List<Playlist*>& playlists,
       int music_index;
       cin >> music_index;
 
-      if (music_index < 1 or music_index > playlists.get(playlist_index)->value->getSize()) {
+      // Check if the user input fits the range of the desired playlist.
+      if (music_index < 1 or
+          music_index > playlists.get(playlist_index)->value->getSize()) {
         cout << "Invalid index!\n\n";
       } else {
         --music_index;
@@ -246,6 +257,9 @@ void move_music_playlist(List<Playlist*>& playlists) {
 
     if (is_index_valid(playlists, paste_index)) {
       cout << "Invalid index!\n\n";
+
+    } else if (cut_index + 1 == paste_index) {
+      cout << "You selected the same playlist.\n\n";
     } else {
       --paste_index;
       playlists.get(cut_index)->value->print();
@@ -254,11 +268,18 @@ void move_music_playlist(List<Playlist*>& playlists) {
       int music_index;
       cin >> music_index;
 
-      if (music_index < 1 or music_index > playlists.get(cut_index)->value->getSize()) {
+      // Check if the index fits the range of the playlist to move from.
+      if (music_index < 1 or
+          music_index > playlists.get(cut_index)->value->getSize()) {
         cout << "Invalid index!\n\n";
       } else {
         --music_index;
-        playlists.get(paste_index)->value->add_music(playlists.get(cut_index)->value->getMusics().get(music_index)->value);
+        // Add the choosen music to the receiver playlist.
+        playlists.get(paste_index)
+            ->value->add_music(playlists.get(cut_index)
+                                   ->value->getMusics()
+                                   .get(music_index)
+                                   ->value);
         playlists.get(cut_index)->value->remove_music(music_index);
         cout << "Music moved from playlists with success.\n\n";
       }
@@ -281,8 +302,7 @@ void next_on_playlist(List<Playlist*>& playlists) {
     if (playlists.get(index)->value->next_music() == nullptr) {
       cout << "No Musics on this queue.\n\n";
     } else {
-      cout << "#" << playlists.get(index)->value->getQueue()
-           << " On Queue:\n";
+      cout << "#" << playlists.get(index)->value->getQueue() << " On Queue:\n";
       cout << playlists.get(index)->value->next_music();
       cout << '\n';
     }
