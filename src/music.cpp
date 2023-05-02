@@ -26,3 +26,7 @@ ostream& operator<<(ostream& out, const Music* music) {
   return out << "Title: " << music->getTitle()
              << " | Artist: " << music->getArtist() << '\n';
 }
+
+bool operator==(const Music* music){
+  if(this->title == music->title && this->artist == music->artist)
+}

@@ -58,7 +58,7 @@ class Playlist {
    */
   string getName() const;
 
-  List<Music*> getMusics() const;
+  List<Music*>& getMusics();
 
   /*!
    * @brief A getter.
@@ -68,6 +68,8 @@ class Playlist {
    * @return The index of the next song to be played.
    */
   int getQueue() const;
+
+  int getSize() const;
 
   /*!
    * @brief Adds a music to the list of music.
