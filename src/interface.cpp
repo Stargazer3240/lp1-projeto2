@@ -257,7 +257,6 @@ void move_music_playlist(List<Playlist*>& playlists) {
 
     if (is_index_valid(playlists, paste_index)) {
       cout << "Invalid index!\n\n";
-
     } else if (cut_index + 1 == paste_index) {
       cout << "You selected the same playlist.\n\n";
     } else {
@@ -298,12 +297,14 @@ void next_on_playlist(List<Playlist*>& playlists) {
     cout << "Invalid index!\n\n";
   } else {
     --index;
+    Music* temp_music;
+    temp_music = playlists.get(index)->value->next_music();
 
-    if (playlists.get(index)->value->next_music() == nullptr) {
+    if (temp_music == nullptr) {
       cout << "No Musics on this queue.\n\n";
     } else {
       cout << "#" << playlists.get(index)->value->getQueue() << " On Queue:\n";
-      cout << playlists.get(index)->value->next_music();
+      cout << temp_music;
       cout << '\n';
     }
   }
