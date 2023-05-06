@@ -44,11 +44,9 @@ Music* Playlist::next_music() {
 void Playlist::print(int index) const {
   if (music_list.getSize() == 0) {
     cout << "Playlist is empty!\n";
-  } else {
+  } else if (index < music_list.getSize()){
     cout << index + 1 << ". " << music_list.get(index)->value;
-    if (index < music_list.getSize() - 1) {
-      print(++index);
-    }
+    print(++index);
   }
 }
 

@@ -59,10 +59,11 @@ class List {
    *
    * This method uses a linear search to check if an input index can be
    * found.
+   * @see head
    * @param index the integer index of the desired node.
    * @return True or False as the result of the search.
    */
-  bool search(int index) {
+  bool search(int index) const {
     if (index < 0 || index >= size) {
       cout << "Out of index!" << '\n';
     } else if (size != 0) {
@@ -84,13 +85,14 @@ class List {
    *
    * This method uses a linear search to check if the input index can be
    * found. If so, returns a pointer to it, if not, returns a nullptr.
+   * @see head; search()
    * @param index the integer index of the desired node.
    * @return A pointer to the linear search result.
    */
   Node<T>* get(int index) {
     if (index < 0 || index >= size) {
       cout << "Out of index!" << '\n';
-    } else if (size != 0) {
+    } else if (search(index)) {
       Node<T>* iterator = head;
       for (int i{0}; i < size; ++i) {
         if (i == index) {
@@ -109,13 +111,14 @@ class List {
    *
    * This method uses a linear search to check if the input index can be
    * found. If so, returns a const pointer to it, if not, returns a nullptr.
+   * @see head; search()
    * @param index the integer index of the desired node.
    * @return A const pointer to the linear search result.
    */
   Node<T>* get(int index) const {
     if (index < 0 || index >= size) {
       cout << "Out of index!" << '\n';
-    } else if (size != 0) {
+    } else if (search(index)) {
       Node<T>* iterator = head;
       for (int i{0}; i < size; ++i) {
         if (i == index) {
@@ -144,7 +147,6 @@ class List {
     } else {
       tail->next = new_node;
       tail = new_node;
-      new_node->value = value;
     }
     ++size;
   }
@@ -184,7 +186,7 @@ class List {
    */
   void empty() {
     for (int i{0}; i < size; ++i) {
-      remove(i);
+      remove(0);
     }
   }
 
