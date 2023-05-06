@@ -51,7 +51,7 @@ void remove_music(List<Playlist*>& playlists, List<Music*>& musics) {
         test_playlist = playlists.get(i)->value;
         for (int j{0}; j < test_playlist->getSize(); ++j) {
           test_music = test_playlist->getMusics().get(j)->value;
-          if (test_music && test_music == desired_music) {
+          if (test_music != nullptr && test_music == desired_music) {
             test_playlist->remove_music(j);
             j = 0;
           }
@@ -206,25 +206,25 @@ void remove_music_playlist(List<Playlist*>& playlists) {
   if (!is_index_valid(playlists, playlist_index)) {
     cout << "Invalid index!\n";
   } else {
-      --playlist_index;
-      Playlist* desired_playlist = playlists.get(playlist_index)->value;
-      if (desired_playlist->getSize() == 0){
-        cout << "Playlist already empty!\n";
+    --playlist_index;
+    Playlist* desired_playlist = playlists.get(playlist_index)->value;
+    if (desired_playlist->getSize() == 0) {
+      cout << "Playlist already empty!\n";
+    } else {
+      desired_playlist->print();
+      cout << '\n';
+      cout << "What is the index of the Music you want to remove? ";
+      int music_index;
+      cin >> music_index;
+      if (!is_index_valid(desired_playlist, music_index)) {
+        cout << "Invalid index!\n\n";
       } else {
-        desired_playlist->print();
-        cout << '\n';
-        cout << "What is the index of the Music you want to remove? ";
-        int music_index;
-        cin >> music_index;
-        if (!is_index_valid(desired_playlist, music_index)) {
-          cout << "Invalid index!\n\n";
-        } else {
-          --music_index;
-          desired_playlist->remove_music(music_index);
-          cout << "Music removed from playlist with success.\n\n";
-        }
+        --music_index;
+        desired_playlist->remove_music(music_index);
+        cout << "Music removed from playlist with success.\n\n";
       }
     }
+  }
 }
 
 void move_music_playlist(List<Playlist*>& playlists) {
