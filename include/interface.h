@@ -16,12 +16,12 @@ Playlist* new_playlist(string name);
 // Test if the input index is in a valid range [1,size].
 template <typename T>
 bool is_index_valid(const List<T*>& list, int index) {
-  return index > 0 or index < list.getSize();
+  return index > 0 and index <= list.getSize();
 }
 
 template <typename T>
 bool is_index_valid(const T* value, int index) {
-  return index > 0 or index < value->getSize();
+  return index > 0 and index <= value->getSize();
 }
 
 bool main_menu(List<Playlist*>& playlists, List<Music*>& musics);
