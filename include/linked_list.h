@@ -22,7 +22,7 @@ template <typename T>
 class List {
  private:
   Node<T>* head; /*!< The first node in the list. */
-  Node<T>* tail; /*!< The last node in the list. Always points to nullptr */
+  Node<T>* tail; /*!< The last node in the list. */
   int size;      /*!< The size of the linked list. */
 
  public:
