@@ -2,12 +2,12 @@
 //
 // SPDX-License-Identifier: MIT
 
+#ifndef INTERFACE_H
+#define INTERFACE_H
+
 #include "playlist.h"
 
 using std::cin, std::getline;
-
-#ifndef INTERFACE_H
-#define INTERFACE_H
 
 Music* new_music(string title, string artist);
 

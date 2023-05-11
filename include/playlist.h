@@ -2,11 +2,11 @@
 //
 // SPDX-License-Identifier: MIT
 
-#include "linked_list.h"
-#include "music.h"
-
 #ifndef PLAYLIST_H
 #define PLAYLIST_H
+
+#include "linked_list.h"
+#include "music.h"
 
 /*!
  * @brief A class that represents a playlist.

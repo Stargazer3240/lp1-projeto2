@@ -2,14 +2,14 @@
 //
 // SPDX-License-Identifier: MIT
 
+#ifndef MUSIC_H
+#define MUSIC_H
+
 #include <iostream>
 #include <string>
 #include <utility>
 
 using std::string, std::ostream, std::cout;
-
-#ifndef MUSIC_H
-#define MUSIC_H
 
 /*!
  * @brief A class that represents a music.

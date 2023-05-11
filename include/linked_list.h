@@ -2,14 +2,14 @@
 //
 // SPDX-License-Identifier: MIT
 
+#ifndef LINKED_LIST_H
+#define LINKED_LIST_H
+
 #include <iostream>
 
 #include "node.h"
 
 using std::cout;
-
-#ifndef LINKED_LIST_H
-#define LINKED_LIST_H
 
 /*!
  * @brief A class that represents a linked list.
