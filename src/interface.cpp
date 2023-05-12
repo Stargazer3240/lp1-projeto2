@@ -4,18 +4,6 @@
 
 #include "interface.h"
 
-// Creates a music on Heap for List::push_back usage in interface.
-Music* new_music(string title, string artist) {
-  auto new_music = new Music(std::move(title), std::move(artist));
-  return new_music;
-}
-
-// Creates a playlist on Heap for List::push_back usage in interface.
-Playlist* new_playlist(string name) {
-  auto new_playlist = new Playlist(std::move(name));
-  return new_playlist;
-}
-
 void register_music(List<Music*>& musics) {
   cout << "What is the title of the Music? ";
   cin.ignore();
@@ -24,7 +12,8 @@ void register_music(List<Music*>& musics) {
   cout << "What is the artist of the Music? ";
   string artist;
   getline(cin, artist);
-  musics.push_back(new_music(title, artist));
+  auto new_music = new Music(title, artist);
+  musics.push_back(new_music);
   cout << "Music added with success!\n\n";
 }
 
@@ -109,7 +98,8 @@ void create_playlist(List<Playlist*>& playlists) {
   cin.ignore();
   string name;
   getline(cin, name);
-  playlists.push_back(new_playlist(name));
+  auto new_playlist = new Playlist(name);
+  playlists.push_back(new_playlist);
   cout << "Playlist created with success!\n\n";
 }
 

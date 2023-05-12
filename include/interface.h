@@ -9,10 +9,6 @@
 
 using std::cin, std::getline;
 
-Music* new_music(string title, string artist);
-
-Playlist* new_playlist(string name);
-
 // Test if the input index is in a valid range [1,size].
 template <typename T>
 bool is_index_valid(const List<T*>& list, int index) {
