@@ -33,6 +33,7 @@ void remove_music(List<Playlist*>& playlists, List<Music*>& musics) {
     char confirmation;
     cin >> confirmation;
     if (confirmation == 'y') {
+      // Removing desired music from all playlists.
       int size_i = playlists.getSize();
       Playlist* test_playlist = nullptr;
       Music* test_music = nullptr;
