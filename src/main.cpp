@@ -7,7 +7,7 @@
 int main() {
   List<Playlist*> playlists;
   List<Music*> musics;
-
+/*
   auto play1 = new Playlist("As 100 Melhores do Samba");
   auto play2 = new Playlist("Alternative Metal");
   auto mus1 = new Music("O mundo é um moinho", "Cartola");
@@ -31,7 +31,7 @@ int main() {
   playlists.get(1)->value->add_music(mus4);
   playlists.get(1)->value->add_music(mus5);
   playlists.get(1)->value->add_music(mus2);
-
+*/
   // User Interface.
   while (main_menu(playlists, musics)) {
   }
