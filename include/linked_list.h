@@ -127,7 +127,7 @@ class List {
    * This method checks if there is a node at set index and removes it from the
    * list if true, releasing it from the heap, while also decreasing the list's
    * size.
-   * @see head; size; search(); get()
+   * @see head; size; get()
    * @param index the integer index of the desired node to remove.
    */
   void remove(int index) {
