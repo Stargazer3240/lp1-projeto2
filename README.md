@@ -78,6 +78,9 @@ Most of the navigation occurs in the mentioned way, with the exception of
 Registering Music and Creating Playlist, in which you'll be able to enter
 names with multiple words.
 
+## Limitations
+- If you type a non-numeric char when the program says "Choose an option: ", it will break and enter an infinite loop.
+
 ## Author
 - Fabrício Moura Jácome
 
