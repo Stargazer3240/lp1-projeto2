@@ -134,15 +134,17 @@ class List {
     if (index < 0 || index >= size) {
       cout << "Out of index!" << '\n';
     } else {
-      Node<T>* dummy = nullptr;
-      if (index == 0) {
-        dummy = head;
+      Node<T>* dummy = get(index);
+      if(index == 0) {
         head = head->next;
       } else {
-        dummy = get(index);
         Node<T>* previous_dummy = get(index - 1);
         previous_dummy->next = dummy->next;
+        if (dummy == tail){
+          tail = previous_dummy;
+        }
       }
+      delete dummy->value;
       delete dummy;
       --size;
     }
@@ -157,6 +159,7 @@ class List {
   void empty() {
     for (int i{0}; i < size; ++i) {
       remove(0);
+      --i;
     }
   }
 
