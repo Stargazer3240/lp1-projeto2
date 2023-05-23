@@ -9,15 +9,18 @@
 
 using std::cin, std::getline;
 
-// Test if the input index is in a valid range [1,size].
+// Receives a linked list and checks if the desired input index is in a valid
+// range [1,size].
 template <typename T>
 bool is_index_valid(const List<T*>& list, int index) {
   return index > 0 and index <= list.getSize();
 }
 
+// Receives a Playlist pointer and checks if the desired index is in a valid
+// range [1,size].
 template <typename T>
-bool is_index_valid(const T* value, int index) {
-  return index > 0 and index <= value->getSize();
+bool is_index_valid(const T playlist, int index) {
+  return index > 0 and index <= playlist->getSize();
 }
 
 bool main_menu(List<Playlist*>& playlists, List<Music*>& musics);
