@@ -38,15 +38,6 @@ class List {
   }
 
   /*!
-   * @brief A destructor.
-   *
-   * Deletes all nodes of the linked list.
-   *
-   * @see empty()
-   */
-  ~List() { empty(); }
-
-  /*!
    * @brief A getter.
    *
    * Get the size of the list.
@@ -134,32 +125,55 @@ class List {
     if (index < 0 || index >= size) {
       cout << "Out of index!" << '\n';
     } else {
-      Node<T>* dummy = get(index);
-      if(index == 0) {
+      Node<T>* node = get(index);
+      if (index == 0) {
         head = head->next;
       } else {
-        Node<T>* previous_dummy = get(index - 1);
-        previous_dummy->next = dummy->next;
-        if (dummy == tail){
-          tail = previous_dummy;
+        Node<T>* previous_node = get(index - 1);
+        previous_node->next = node->next;
+        if (node == tail) {
+          tail = previous_node;
         }
       }
-      delete dummy->value;
-      delete dummy;
+      delete node;
       --size;
     }
   }
 
+  void clear(int index) {
+    if (index < 0 || index >= size) {
+      cout << "Out of index!" << '\n';
+    } else {
+      Node<T>* node = get(index);
+      if (index == 0) {
+        head = head->next;
+      } else {
+        Node<T>* previous_node = get(index - 1);
+        previous_node->next = node->next;
+        if (node == tail) {
+          tail = previous_node;
+        }
+      }
+      delete node->value;
+      delete node;
+      --size;
+    }
+  }
   /*!
    * @brief Empties a linked list.
    *
    * Removes all nodes from a set linked list.
    * @see remove()
    */
-  void empty() {
-    for (int i{0}; i < size; ++i) {
+  void remove_nodes() {
+    while (size != 0) {
       remove(0);
-      --i;
+    }
+  }
+
+  void clear_nodes() {
+    while (size != 0) {
+      clear(0);
     }
   }
 

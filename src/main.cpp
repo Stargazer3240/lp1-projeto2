@@ -7,7 +7,7 @@
 int main() {
   List<Playlist*> playlists;
   List<Music*> musics;
- 
+
   auto play1 = new Playlist("As 100 Melhores do Samba");
   auto play2 = new Playlist("Alternative Metal");
   auto mus1 = new Music("O mundo é um moinho", "Cartola");
@@ -22,7 +22,7 @@ int main() {
   musics.push_back(mus2);
   musics.push_back(mus3);
   musics.push_back(mus4);
-  musics.push_back(mus5); 
+  musics.push_back(mus5);
 
   playlists.get(0)->value->add_music(mus1);
   playlists.get(0)->value->add_music(mus4);
@@ -31,11 +31,14 @@ int main() {
   playlists.get(1)->value->add_music(mus4);
   playlists.get(1)->value->add_music(mus5);
   playlists.get(1)->value->add_music(mus2);
-/*
-  // User Interface.
-  while (main_menu(playlists, musics)) {
-  }
-*/
+  /*
+    // User Interface.
+    while (main_menu(playlists, musics)) {
+    }
+  */
+
+  playlists.clear_nodes();
+  musics.clear_nodes();
 
   return 0;
 }
