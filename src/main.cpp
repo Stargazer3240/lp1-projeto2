@@ -31,11 +31,10 @@ int main() {
   playlists.get(1)->value->add_music(mus4);
   playlists.get(1)->value->add_music(mus5);
   playlists.get(1)->value->add_music(mus2);
-  /*
-    // User Interface.
-    while (main_menu(playlists, musics)) {
-    }
-  */
+
+  // User Interface.
+  while (main_menu(playlists, musics)) {
+  }
 
   playlists.clear_nodes();
   musics.clear_nodes();
