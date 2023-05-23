@@ -40,7 +40,7 @@ class Playlist {
    */
   Playlist(string name, const List<Music*>& music_list);
 
-  ~Playlist() { music_list.remove_nodes(); }
+  ~Playlist();
 
   /*!
    * @brief A setter.

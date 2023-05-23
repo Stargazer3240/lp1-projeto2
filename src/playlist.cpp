@@ -15,6 +15,8 @@ Playlist::Playlist(string name, const List<Music*>& music_list) {
   on_queue = 0;
 }
 
+Playlist::~Playlist() { music_list.remove_nodes(); }
+
 void Playlist::setName(string name) { this->name = std::move(name); }
 
 string Playlist::getName() const { return name; }
