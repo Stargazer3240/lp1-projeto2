@@ -15,7 +15,8 @@ using std::cout;
  * @brief A class that represents a linked list.
  *
  * A linked list is a data structure made of a head and a tail, with the head
- * being the first node in the list and the tail the last one.
+ * being the first node in the list and the tail the last one. The tail's next
+ * always points to nullptr.
  * @see Node
  */
 template <typename T>
@@ -98,7 +99,7 @@ class List {
    *
    * This method creates a node using dynamic allocation and inserts it at the
    * end of the list, while also incrementing the list's size.
-   * @see size; tail;
+   * @see head; tail; size
    * @param value a generic value that will be inserted at the end of the list.
    */
   void push_back(T value) {
@@ -116,9 +117,9 @@ class List {
    * @brief Removes a node from the linked list.
    *
    * This method checks if there is a node at set index and removes it from the
-   * list if true, releasing it from the heap, while also decreasing the list's
+   * list if true, deleting it from the heap, while also decreasing the list's
    * size.
-   * @see head; size; get()
+   * @see head; tail; size; get();
    * @param index the integer index of the desired node to remove.
    */
   void remove(int index) {
@@ -140,6 +141,15 @@ class List {
     }
   }
 
+  /*!
+   * @brief Removes a node from the linked list.
+   *
+   * This method checks if there is a node at set index and removes it from the
+   * list if true, deleting it from the heap, while also decreasing the list's
+   * size and deleting the node's value.
+   * @see head; tail; size; get(); Node::value
+   * @param index the integer index of the desired node to remove.
+   */
   void clear(int index) {
     if (index < 0 || index >= size) {
       cout << "Out of index!" << '\n';
@@ -159,6 +169,7 @@ class List {
       --size;
     }
   }
+
   /*!
    * @brief Empties a linked list.
    *
@@ -171,6 +182,12 @@ class List {
     }
   }
 
+  /*!
+   * @brief Empties a linked list.
+   *
+   * Removes all nodes and its values from a set linked list.
+   * @see clear()
+   */
   void clear_nodes() {
     while (size != 0) {
       clear(0);

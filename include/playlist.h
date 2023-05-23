@@ -40,6 +40,12 @@ class Playlist {
    */
   Playlist(string name, const List<Music*>& music_list);
 
+  /*!
+   * @brief A desstructor.
+   *
+   * Destructor that removes the nodes of the list of musics.
+   * @see music_list; List::remove_nodes()
+   */
   ~Playlist();
 
   /*!
