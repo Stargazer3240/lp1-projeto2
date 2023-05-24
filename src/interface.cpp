@@ -47,7 +47,7 @@ void remove_music(List<Playlist*>& playlists, List<Music*>& musics) {
           }
         }
       }
-      musics.remove(index);
+      musics.clear(index);
       cout << "Music removed!\n";
     } else if (confirmation == 'n') {
       cout << "Operation cancelled.\n";
@@ -119,7 +119,7 @@ void delete_playlist(List<Playlist*>& playlists) {
     char confirmation;
     cin >> confirmation;
     if (confirmation == 'y') {
-      playlists.remove(index);
+      playlists.clear(index);
       cout << "Playlist removed!\n";
     } else if (confirmation == 'n') {
       cout << "Operation cancelled.\n";
