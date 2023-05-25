@@ -312,8 +312,12 @@ class List {
   }
 
   friend void operator>>(List<T>& list, Node<T>& node) {
-    node = list.get(list.size - 1);
-    list.remove(list.size - 1);
+    if (list.getSize() == 0) {
+      node = nullptr;
+    } else {
+      node = list.get(list.size - 1);
+      list.remove(list.size - 1);
+    }
   }
 
   T operator[](int index) { return get(index)->value; }
