@@ -12,7 +12,7 @@ using std::cin, std::getline;
 // Receives a linked list and checks if the desired input index is in a valid
 // range [1,size].
 template <typename T>
-bool is_index_valid(const List<T*>& list, int index) {
+bool is_index_valid(const List<T>& list, int index) {
   return index > 0 and index <= list.getSize();
 }
 

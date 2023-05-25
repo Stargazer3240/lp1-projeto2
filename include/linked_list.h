@@ -205,6 +205,12 @@ class List {
       cout << i + 1 << ". " << get(i)->value;
     }
   }
+
+  void add(List<T>& list) {
+    this->tail->next = list.head;
+    this->tail = list.tail;
+    this->size += list.size;
+  }
 };
 
 #endif
