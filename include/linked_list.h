@@ -311,12 +311,18 @@ class List {
     return list_one;
   }
 
-  friend void operator>>(List<T>& list, Node<T>& node) {
+  friend void operator>>(List<T>& list, Node<T>* node) {
     if (list.getSize() == 0) {
       node = nullptr;
     } else {
-      node = list.get(list.size - 1);
+      node->value = list[list.size - 1];
       list.remove(list.size - 1);
+    }
+  }
+
+  friend void operator<<(List<T>& list, Node<T>* node) {
+    if (node != nullptr) {
+      list.push_back(node->value);
     }
   }
 
