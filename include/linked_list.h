@@ -302,7 +302,7 @@ class List {
    */
   void print() const {
     for (int i{0}; i < size; ++i) {
-      cout << i + 1 << ". " << get(i)->value;
+      cout << i + 1 << ". " << get(i)->value << '\n';
     }
   }
 

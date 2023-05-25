@@ -31,38 +31,46 @@ int main() {
   playlists[1]->add_music(mus4);
   playlists[1]->add_music(mus5);
   playlists[1]->add_music(mus2);
+  // User Interface.
+  // while (main_menu(playlists, musics)) {
+  // }
   /*
-    // User Interface.
-    while (main_menu(playlists, musics)) {
-    }
+    auto mus6 = new Music("O Pato", "João Gilberto");
+    musics.push_back(mus6);
+
+    List<Playlist*> playlists2;
+    auto play3 = new Playlist("Chill Vibes");
+    playlists2.push_back(play3);
+    playlists2[0]->add_music(mus6);
+
+
+    List<Playlist*> playlists3(playlists + playlists2);
+    list_playlists(playlists3);
+
+    playlists.add(playlists2);
+    list_playlists(playlists);
+    playlists.clear({play1, play2});
+    list_playlists(playlists);
+
+
+    List<Playlist*> playlists4;
+    auto play4 = new Playlist("Pop");
+    playlists4.push_back(play4);
+
+    cout << "Antes da extração: \n";
+    list_playlists(playlists4);
+    list_playlists(playlists2);
+    playlists4 >> playlists2.get(0);
+
+    cout << "Depois da extração/Antes da inserção: \n";
+    list_playlists(playlists4);
+    list_playlists(playlists2);
+    playlists4 << playlists2.get(0);
+    cout << "Depois da inserção: \n";
+    list_playlists(playlists4);
+    list_playlists(playlists2);
   */
-
-  auto mus6 = new Music("O Pato", "João Gilberto");
-  musics.push_back(mus6);
-
-  List<Playlist*> playlists2;
-  auto play3 = new Playlist("Chill Vibes");
-  playlists2.push_back(play3);
-  playlists2[0]->add_music(mus6);
-  List<Playlist*> playlists3(playlists + playlists2);
-  list_playlists(playlists3);
-
-  playlists.add(playlists2);
-  list_playlists(playlists);
-  playlists.clear({play1, play2});
-  list_playlists(playlists);
-
-  List<Playlist*> playlists4;
-  auto play4 = new Playlist("Pop");
-  playlists4.push_back(play4);
-  list_playlists(playlists4);
-  Node<Playlist*> test_node;
-  playlists4 >> test_node;
-  cout << test_node.value;
-  list_playlists(playlists4);
-
-  playlists2.clear_nodes();
-  delete play4;
+  playlists.clear_nodes();
   musics.clear_nodes();
 
   return 0;
