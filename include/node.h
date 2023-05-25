@@ -17,11 +17,6 @@ class Node {
   T value;    /*!< Data piece of the node. */
   Node* next; /*!< Pointer to the next node in the list. */
 
-  Node() {
-    this->value = 0;
-    this->next = nullptr;
-  }
-
   /*!
    * @brief A constructor.
    *
@@ -32,11 +27,6 @@ class Node {
   explicit Node(T value) {
     this->value = value;
     this->next = nullptr;
-  }
-
-  void operator=(Node<T>* node) {
-    this->value = node->value;
-    this->next = node->next;
   }
 };
 
