@@ -50,10 +50,6 @@ class List {
     size = list.size;
   }
 
-  T operator[](int index) { return get(index)->value; }
-
-  T operator[](int index) const { return get(index)->value; }
-
   /*!
    * @brief A getter.
    *
@@ -310,10 +306,14 @@ class List {
     }
   }
 
-  List<T> operator+(List<T> list_two) {
-    this->add(list_two);
-    return *this;
+  friend List<T> operator+(List<T> list_one, List<T> list_two) {
+    list_one.add(list_two);
+    return list_one;
   }
+
+  T operator[](int index) { return get(index)->value; }
+
+  T operator[](int index) const { return get(index)->value; }
 };
 
 #endif

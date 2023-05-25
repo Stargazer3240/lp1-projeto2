@@ -44,8 +44,7 @@ int main() {
   auto play3 = new Playlist("Chill Vibes");
   playlists2.push_back(play3);
   playlists2[0]->add_music(mus6);
-  List<Playlist*> playlists3 = playlists + playlists2;
-
+  List<Playlist*> playlists3(playlists + playlists2);
   list_playlists(playlists3);
 
   // playlists.add(playlists2);
@@ -53,7 +52,7 @@ int main() {
   // playlists.clear({play1, play2});
   // list_playlists(playlists);
 
-  playlists.clear_nodes();
+  playlists3.clear_nodes();
   musics.clear_nodes();
 
   return 0;
