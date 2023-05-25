@@ -31,17 +31,7 @@ class Playlist {
   explicit Playlist(string name);
 
   /*!
-   * @brief A constructor.
-   *
-   * Constructor that receives a name and a list of musics.
-   * @see name; music_list
-   * @param name a string that represents a name.
-   * @param music_list a const reference to a linked list of musics.
-   */
-  Playlist(string name, const List<Music*>& music_list);
-
-  /*!
-   * @brief A desstructor.
+   * @brief A destructor.
    *
    * Destructor that removes the nodes of the list of musics.
    * @see music_list; List::remove_nodes()

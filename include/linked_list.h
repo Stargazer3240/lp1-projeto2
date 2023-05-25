@@ -5,11 +5,12 @@
 #ifndef LINKED_LIST_H
 #define LINKED_LIST_H
 
+#include <initializer_list>
 #include <iostream>
 
 #include "node.h"
 
-using std::cout;
+using std::cout, std::initializer_list;
 
 /*!
  * @brief A class that represents a linked list.
@@ -39,12 +40,64 @@ class List {
   }
 
   /*!
+   * @brief A copy constructor.
+   *
+   * Initialize a linked list as a copy of another one.
+   */
+  List(List<T>& list) {
+    this->head = list.head;
+    this->tail = list.tail;
+    size = list.size;
+  }
+
+  /*!
    * @brief A getter.
    *
    * Get the size of the list.
    * @return The size of the list.
    */
   int getSize() const { return size; }
+
+  /*!
+   * @brief Check if a certain element is inside a list.
+   *
+   * This method uses a linear search to check if the desired element can be
+   * found.
+   * @see head; size
+   * @param element the desired element to search.
+   * @return True if the element can be found, false if otherwise.
+   */
+  bool search(T element) {
+    Node<T>* iterator = head;
+    for (int i{0}; i < size; ++i) {
+      if (iterator->value == element) {
+        return true;
+      }
+      iterator = iterator->next;
+    }
+    return false;
+  }
+
+  /*!
+   * @brief Find the index of a certain element, if it is in the list.
+   *
+   * This method uses a linear search to find the index of the desired element.
+   * @see head; size
+   * @param element the desired element to find.
+   * @return The position of the element if it is in the list, -1 if it can't be
+   * found.
+   */
+  int find(T element) {
+    Node<T>* iterator = head;
+    for (int i{0}; i < size; ++i) {
+      if (iterator->value == element) {
+        return i;
+      }
+      iterator = iterator->next;
+    }
+
+    return -1;
+  }
 
   /*!
    * @brief Gets a pointer to the corresponding node of an index, if any.
@@ -114,6 +167,20 @@ class List {
   }
 
   /*!
+   * @brief Inserts another linked list at the end of the current list.
+   *
+   * This method appends a linked list to the current one, while preserving
+   * the appended list.
+   * @see head; tail; size
+   * @param list a second linked list you want to append to the current one.
+   */
+  void add(List<T>& list) {
+    this->tail->next = list.head;
+    this->tail = list.tail;
+    this->size += list.size;
+  }
+
+  /*!
    * @brief Removes a node from the linked list.
    *
    * This method checks if there is a node at set index and removes it from the
@@ -138,6 +205,22 @@ class List {
       }
       delete node;
       --size;
+    }
+  }
+
+  /*!
+   * @brief Removes multiple elements from the linked list
+   *
+   * This method receives a list of possible elements to remove and proceeds
+   * to remove the ones that can be found in the linked list.
+   * @see search(); find(); remove()
+   * @param list a list of elements that you want to remove.
+   */
+  void remove(initializer_list<T> list) {
+    for (T element : list) {
+      if (search(element)) {
+        remove(find(element));
+      }
     }
   }
 
@@ -167,6 +250,23 @@ class List {
       delete node->value;
       delete node;
       --size;
+    }
+  }
+
+  /*!
+   * @brief Removes multiple elements from the linked list
+   *
+   * This method receives a list of possible elements to remove and proceeds
+   * to remove the ones that can be found in the linked list, while also
+   * deleting their value from the heap.
+   * @see search(); find(); remove()
+   * @param list a list of elements that you want to remove.
+   */
+  void clear(initializer_list<T> list) {
+    for (T element : list) {
+      if (search(element)) {
+        clear(find(element));
+      }
     }
   }
 
@@ -204,12 +304,6 @@ class List {
     for (int i{0}; i < size; ++i) {
       cout << i + 1 << ". " << get(i)->value;
     }
-  }
-
-  void add(List<T>& list) {
-    this->tail->next = list.head;
-    this->tail = list.tail;
-    this->size += list.size;
   }
 };
 

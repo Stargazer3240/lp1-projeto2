@@ -31,10 +31,23 @@ int main() {
   playlists.get(1)->value->add_music(mus4);
   playlists.get(1)->value->add_music(mus5);
   playlists.get(1)->value->add_music(mus2);
+  /*
+    // User Interface.
+    while (main_menu(playlists, musics)) {
+    }
+  */
+  auto mus6 = new Music("O Pato", "João Gilberto");
+  musics.push_back(mus6);
 
-  // User Interface.
-  while (main_menu(playlists, musics)) {
-  }
+  List<Playlist*> playlists2;
+  auto play3 = new Playlist("Chill Vibes");
+  playlists2.push_back(play3);
+  playlists2.get(0)->value->add_music(mus6);
+
+  playlists.add(playlists2);
+  list_playlists(playlists);
+  playlists.clear({play1, play2});
+  list_playlists(playlists);
 
   playlists.clear_nodes();
   musics.clear_nodes();
