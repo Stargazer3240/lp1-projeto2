@@ -50,8 +50,6 @@ class List {
     size = list.size;
   }
 
-  void operator=(List<T>& list) { this(list); }
-
   T operator[](int index) { return get(index)->value; }
 
   T operator[](int index) const { return get(index)->value; }
