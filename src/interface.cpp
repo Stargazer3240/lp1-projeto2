@@ -132,7 +132,7 @@ void delete_playlist(List<Playlist*>& playlists) {
 
 void list_playlists(const List<Playlist*>& playlists) {
   if (playlists.getSize() == 0) {
-    cout << "No Playlist on the system!\n";
+    cout << "No Playlist on the system!\n\n";
   } else {
     cout << "List of Playlists:\n";
     playlists.print();
@@ -151,7 +151,6 @@ void list_playlist_musics(const List<Playlist*>& playlists) {
   } else {
     --index;
     Playlist* desired_playlist = playlists[index];
-    cout << desired_playlist;
     desired_playlist->print();
     cout << '\n';
   }
