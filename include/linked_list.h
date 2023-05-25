@@ -298,7 +298,7 @@ class List {
    * @brief Prints the nodes of a linked list.
    *
    * Prints all nodes of a linked list.
-   * @see get(); Node::value; Music::operator<<(); Playlist::operator<<()
+   * @see get(); Node::value;
    */
   void print() const {
     for (int i{0}; i < size; ++i) {
