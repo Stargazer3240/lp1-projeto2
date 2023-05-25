@@ -311,6 +311,11 @@ class List {
     return list_one;
   }
 
+  friend void operator>>(List<T>& list, Node<T>& node) {
+    node = list.get(list.size - 1);
+    list.remove(list.size - 1);
+  }
+
   T operator[](int index) { return get(index)->value; }
 
   T operator[](int index) const { return get(index)->value; }

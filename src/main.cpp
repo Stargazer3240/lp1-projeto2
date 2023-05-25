@@ -47,12 +47,22 @@ int main() {
   List<Playlist*> playlists3(playlists + playlists2);
   list_playlists(playlists3);
 
-  // playlists.add(playlists2);
-  // list_playlists(playlists);
-  // playlists.clear({play1, play2});
-  // list_playlists(playlists);
+  playlists.add(playlists2);
+  list_playlists(playlists);
+  playlists.clear({play1, play2});
+  list_playlists(playlists);
 
-  playlists3.clear_nodes();
+  List<Playlist*> playlists4;
+  auto play4 = new Playlist("Pop");
+  playlists4.push_back(play4);
+  list_playlists(playlists4);
+  Node<Playlist*> test_node;
+  playlists4 >> test_node;
+  cout << test_node.value;
+  list_playlists(playlists4);
+
+  playlists2.clear_nodes();
+  delete play4;
   musics.clear_nodes();
 
   return 0;
