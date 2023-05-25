@@ -50,6 +50,12 @@ class List {
     size = list.size;
   }
 
+  void operator=(List<T>& list) { this(list); }
+
+  T operator[](int index) { return get(index)->value; }
+
+  T operator[](int index) const { return get(index)->value; }
+
   /*!
    * @brief A getter.
    *
@@ -304,6 +310,11 @@ class List {
     for (int i{0}; i < size; ++i) {
       cout << i + 1 << ". " << get(i)->value;
     }
+  }
+
+  List<T> operator+(List<T> list_two) {
+    this->add(list_two);
+    return *this;
   }
 };
 

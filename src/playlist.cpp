@@ -28,7 +28,7 @@ void Playlist::remove_music(int index) { music_list.remove(index); }
 Music* Playlist::next_music() {
   Music* to_play;
   if (on_queue < music_list.getSize()) {
-    to_play = music_list.get(on_queue)->value;
+    to_play = music_list[on_queue];
     ++on_queue;
   } else {
     to_play = nullptr;
@@ -41,7 +41,7 @@ void Playlist::print(int index) const {
   if (music_list.getSize() == 0) {
     cout << "Playlist is empty!\n";
   } else if (index < music_list.getSize()) {
-    cout << index + 1 << ". " << music_list.get(index)->value;
+    cout << index + 1 << ". " << music_list[index];
     print(++index);
   }
 }

@@ -27,7 +27,7 @@ void remove_music(List<Playlist*>& playlists, List<Music*>& musics) {
     cout << "Invalid index!\n\n";
   } else {
     --index;
-    Music* desired_music = musics.get(index)->value;
+    Music* desired_music = musics[index];
     cout << "This will remove Music:\n"
          << desired_music << "Are you sure [y/n]? ";
     char confirmation;
@@ -38,9 +38,9 @@ void remove_music(List<Playlist*>& playlists, List<Music*>& musics) {
       Playlist* test_playlist = nullptr;
       Music* test_music = nullptr;
       for (int i{0}; i < size_i; ++i) {
-        test_playlist = playlists.get(i)->value;
+        test_playlist = playlists[i];
         for (int j{0}; j < test_playlist->getSize(); ++j) {
-          test_music = test_playlist->getMusics().get(j)->value;
+          test_music = test_playlist->getMusics()[j];
           if (test_music != nullptr && test_music == desired_music) {
             test_playlist->remove_music(j);
             j = 0;
@@ -115,7 +115,7 @@ void delete_playlist(List<Playlist*>& playlists) {
   } else {
     --index;
     cout << "This will remove Playlist:\n"
-         << playlists.get(index)->value->getName() << "\nAre you sure [y/n]? ";
+         << playlists[index]->getName() << "\nAre you sure [y/n]? ";
     char confirmation;
     cin >> confirmation;
     if (confirmation == 'y') {
@@ -150,7 +150,7 @@ void list_playlist_musics(const List<Playlist*>& playlists) {
     cout << "Invalid index!\n\n";
   } else {
     --index;
-    Playlist* desired_playlist = playlists.get(index)->value;
+    Playlist* desired_playlist = playlists[index];
     cout << desired_playlist;
     desired_playlist->print();
     cout << '\n';
@@ -179,8 +179,8 @@ void add_music_playlist(List<Playlist*>& playlists,
         cout << "Invalid index!\n\n";
       } else {
         --music_index;
-        Playlist* desired_playlist = playlists.get(playlist_index)->value;
-        Music* desired_music = musics.get(music_index)->value;
+        Playlist* desired_playlist = playlists[playlist_index];
+        Music* desired_music = musics[music_index];
         desired_playlist->add_music(desired_music);
         cout << "Music added to playlist with success.\n\n";
       }
@@ -198,7 +198,7 @@ void remove_music_playlist(List<Playlist*>& playlists) {
     cout << "Invalid index!\n";
   } else {
     --playlist_index;
-    Playlist* desired_playlist = playlists.get(playlist_index)->value;
+    Playlist* desired_playlist = playlists[playlist_index];
     if (desired_playlist->getSize() == 0) {
       cout << "Playlist already empty!\n";
     } else {
@@ -239,7 +239,7 @@ void move_music_playlist(List<Playlist*>& playlists) {
       cout << "You selected the same playlist.\n\n";
     } else {
       --paste_index;
-      Playlist* cut_playlist = playlists.get(cut_index)->value;
+      Playlist* cut_playlist = playlists[cut_index];
       cut_playlist->print();
       cout << '\n';
       cout << "What is the index of the Music you want to move? ";
@@ -251,8 +251,8 @@ void move_music_playlist(List<Playlist*>& playlists) {
       } else {
         --music_index;
         Music* chosen_music;
-        chosen_music = cut_playlist->getMusics().get(music_index)->value;
-        Playlist* paste_playlist = playlists.get(paste_index)->value;
+        chosen_music = cut_playlist->getMusics()[music_index];
+        Playlist* paste_playlist = playlists[paste_index];
         paste_playlist->add_music(chosen_music);
         cut_playlist->remove_music(music_index);
         cout << "Music moved from playlists with success.\n\n";
@@ -271,7 +271,7 @@ void next_on_playlist(List<Playlist*>& playlists) {
     cout << "Invalid index!\n\n";
   } else {
     --index;
-    Playlist* desired_playlist = playlists.get(index)->value;
+    Playlist* desired_playlist = playlists[index];
     Music* temp_music;
     temp_music = desired_playlist->next_music();
     if (temp_music == nullptr) {

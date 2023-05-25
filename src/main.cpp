@@ -24,30 +24,34 @@ int main() {
   musics.push_back(mus4);
   musics.push_back(mus5);
 
-  playlists.get(0)->value->add_music(mus1);
-  playlists.get(0)->value->add_music(mus4);
-  playlists.get(0)->value->add_music(mus2);
-  playlists.get(1)->value->add_music(mus3);
-  playlists.get(1)->value->add_music(mus4);
-  playlists.get(1)->value->add_music(mus5);
-  playlists.get(1)->value->add_music(mus2);
+  playlists[0]->add_music(mus1);
+  playlists[0]->add_music(mus4);
+  playlists[0]->add_music(mus2);
+  playlists[1]->add_music(mus3);
+  playlists[1]->add_music(mus4);
+  playlists[1]->add_music(mus5);
+  playlists[1]->add_music(mus2);
   /*
     // User Interface.
     while (main_menu(playlists, musics)) {
     }
   */
+
   auto mus6 = new Music("O Pato", "João Gilberto");
   musics.push_back(mus6);
 
   List<Playlist*> playlists2;
   auto play3 = new Playlist("Chill Vibes");
   playlists2.push_back(play3);
-  playlists2.get(0)->value->add_music(mus6);
+  playlists2[0]->add_music(mus6);
+  List<Playlist*> playlists3 = playlists + playlists2;
 
-  playlists.add(playlists2);
-  list_playlists(playlists);
-  playlists.clear({play1, play2});
-  list_playlists(playlists);
+  list_playlists(playlists3);
+
+  // playlists.add(playlists2);
+  // list_playlists(playlists);
+  // playlists.clear({play1, play2});
+  // list_playlists(playlists);
 
   playlists.clear_nodes();
   musics.clear_nodes();
