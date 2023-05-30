@@ -30,6 +30,8 @@ class Playlist {
    */
   explicit Playlist(string name);
 
+  Playlist(Playlist& playlist);
+
   /*!
    * @brief A destructor.
    *
@@ -93,6 +95,8 @@ class Playlist {
    */
   void add_music(Music* music);
 
+  void add_music(Playlist& playlist);
+
   /*!
    * @brief Removes a music from the list of music.
    *
@@ -102,6 +106,8 @@ class Playlist {
    * @see List::remove(); music_list
    */
   void remove_music(int index);
+
+  int remove_music(Playlist& playlist);
 
   /*!
    * @brief Gives the next music on queue.

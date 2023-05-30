@@ -70,6 +70,23 @@ int main() {
     list_playlists(playlists4);
     list_playlists(playlists2);
   */
+
+  /*
+  play1->print();
+  cout << "\n";
+  play1->add_music(*play2);
+  play1->print();
+  */
+  /*
+    auto play3 = new Playlist(*play1);
+    play3->print();
+  */
+  /*
+    play1->print();
+    play1->remove_music(*play2);
+    cout << "\n";
+    play1->print();
+  */
   playlists.clear_nodes();
   musics.clear_nodes();
 

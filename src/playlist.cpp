@@ -9,6 +9,14 @@ Playlist::Playlist(string name) {
   on_queue = 0;
 }
 
+Playlist::Playlist(Playlist& playlist) {
+  this->name = playlist.name;
+  for (int i{0}; i < playlist.music_list.getSize(); ++i) {
+    this->music_list.push_back(playlist.music_list[i]);
+  }
+  this->on_queue = playlist.on_queue;
+}
+
 Playlist::~Playlist() { music_list.remove_nodes(); }
 
 void Playlist::setName(string name) { this->name = std::move(name); }
@@ -23,7 +31,23 @@ int Playlist::getSize() const { return music_list.getSize(); }
 
 void Playlist::add_music(Music* music) { music_list.push_back(music); }
 
+void Playlist::add_music(Playlist& playlist) {
+  this->music_list.add(playlist.getMusics());
+}
+
 void Playlist::remove_music(int index) { music_list.remove(index); }
+
+int Playlist::remove_music(Playlist& playlist) {
+  int sum{0};
+  for (int i{0}; i < playlist.music_list.getSize(); ++i) {
+    if (this->music_list.search(playlist.music_list[i])) {
+      this->music_list.remove(music_list.find(playlist.music_list[i]));
+      ++sum;
+    }
+  }
+
+  return sum;
+}
 
 Music* Playlist::next_music() {
   Music* to_play;
