@@ -37,7 +37,7 @@ void Playlist::add_music(Playlist& playlist) {
 
 void Playlist::remove_music(int index) { music_list.remove(index); }
 
-int Playlist::remove_music(Playlist& playlist) {
+int Playlist::remove_music(const Playlist& playlist) {
   int sum{0};
   for (int i{0}; i < playlist.music_list.getSize(); ++i) {
     if (this->music_list.search(playlist.music_list[i])) {
@@ -69,6 +69,29 @@ void Playlist::print(int index) const {
     print(++index);
   }
 }
+
+List<Playlist*> Playlist::operator+(Playlist* playlist_b) {
+  Playlist* dummy_playlist(this);
+  bool should_add;
+
+  for (int i{0}; i < playlist_b.getSize(); ++i) {
+    should_add = true;
+    for (int j{0}; j < this->getSize(); ++j) {
+      if (playlist_b.getMusics()[i] == this->getMusics()[j]) {
+        should_add = false;
+      }
+    }
+    if (should_add) {
+      dummy_playlist->add_music(playlist_b.getMusics()[i]);
+    }
+  }
+  List<Playlist*> dummy_list;
+  dummy_list.push_back(dummy_playlist);
+
+  return dummy_list;
+}
+
+Playlist Playlist::operator+(Music* music) {}
 
 ostream& operator<<(ostream& out, const Playlist& playlist) {
   return out << "" << playlist.getName();

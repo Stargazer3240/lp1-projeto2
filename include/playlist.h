@@ -107,7 +107,7 @@ class Playlist {
    */
   void remove_music(int index);
 
-  int remove_music(Playlist& playlist);
+  int remove_music(const Playlist& playlist);
 
   /*!
    * @brief Gives the next music on queue.
@@ -129,6 +129,10 @@ class Playlist {
    * @see music_list; List::get(); List::getSize()
    */
   void print(int index = 0) const;
+
+  List<Playlist*> operator+(Playlist* playlist_b);
+
+  Playlist operator+(Music* music);
 
   /*!
    * @brief An I/O operator overloading.

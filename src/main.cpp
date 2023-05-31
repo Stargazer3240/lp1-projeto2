@@ -71,16 +71,21 @@ int main() {
     list_playlists(playlists2);
   */
 
+  // Playlist::add_music(Playlist&)
   /*
   play1->print();
   cout << "\n";
   play1->add_music(*play2);
   play1->print();
   */
+
+  // Playlist(Playlist&)
   /*
     auto play3 = new Playlist(*play1);
     play3->print();
   */
+
+  // Playlist::remove_music(Playlist&)
   /*
     play1->print();
     play1->remove_music(*play2);
