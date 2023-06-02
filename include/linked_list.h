@@ -306,23 +306,24 @@ class List {
     }
   }
 
-  friend List<T> operator+(List<T> list_one, List<T> list_two) {
-    list_one.add(list_two);
-    return list_one;
+  List<T> operator+(List<T>& list_b) {
+    List<T> list_a(*this);
+    list_a.add(list_b);
+    return list_a;
   }
 
-  friend void operator>>(List<T>& list, Node<T>* node) {
-    if (list.getSize() == 0) {
+  void operator>>(Node<T>* node) {
+    if (this->getSize() == 0) {
       node = nullptr;
     } else {
-      node->value = list[list.size - 1];
-      list.remove(list.size - 1);
+      node->value = (*this)[this->size - 1];
+      this->remove(this->size - 1);
     }
   }
 
-  friend void operator<<(List<T>& list, Node<T>* node) {
+  void operator<<(Node<T>* node) {
     if (node != nullptr) {
-      list.push_back(node->value);
+      this->push_back(node->value);
     }
   }
 
