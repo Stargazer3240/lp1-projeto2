@@ -70,28 +70,55 @@ void Playlist::print(int index) const {
   }
 }
 
-List<Playlist*> Playlist::operator+(Playlist* playlist_b) {
-  Playlist* dummy_playlist(this);
+Playlist Playlist::operator+(Playlist* playlist_b) {
+  Playlist playlist_a(*this);
   bool should_add;
 
-  for (int i{0}; i < playlist_b.getSize(); ++i) {
+  for (int i{0}; i < playlist_b->getSize(); ++i) {
     should_add = true;
-    for (int j{0}; j < this->getSize(); ++j) {
-      if (playlist_b.getMusics()[i] == this->getMusics()[j]) {
+    for (int j{0}; j < playlist_a.getSize(); ++j) {
+      if (playlist_b->getMusics()[i] == playlist_a.getMusics()[j]) {
         should_add = false;
       }
     }
     if (should_add) {
-      dummy_playlist->add_music(playlist_b.getMusics()[i]);
+      playlist_a.add_music(playlist_b->getMusics()[i]);
     }
   }
-  List<Playlist*> dummy_list;
-  dummy_list.push_back(dummy_playlist);
 
-  return dummy_list;
+  return playlist_a;
 }
 
-Playlist Playlist::operator+(Music* music) {}
+Playlist Playlist::operator+(Music* music) {
+  Playlist playlist_a(*this);
+
+  playlist_a.add_music(music);
+
+  return playlist_a;
+}
+
+Playlist Playlist::operator-(Playlist* playlist_b) {
+  Playlist playlist_a(*this);
+
+  for (int i{0}; i < playlist_b->getSize(); ++i) {
+    for (int j{0}; j < playlist_a.getSize(); ++j) {
+      if (playlist_b->getMusics()[i] == playlist_a.getMusics()[j]) {
+        playlist_a.remove_music(j);
+      }
+    }
+  }
+  return playlist_a;
+}
+
+Playlist Playlist::operator-(Music* music) {
+  Playlist playlist(*this);
+
+  if (playlist.getMusics().search(music)) {
+    playlist.getMusics().remove(playlist.getMusics().find(music));
+  }
+
+  return playlist;
+}
 
 ostream& operator<<(ostream& out, const Playlist& playlist) {
   return out << "" << playlist.getName();

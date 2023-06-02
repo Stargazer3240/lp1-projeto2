@@ -130,10 +130,15 @@ class Playlist {
    */
   void print(int index = 0) const;
 
-  List<Playlist*> operator+(Playlist* playlist_b);
+  Playlist operator+(Playlist* playlist_b);
 
   Playlist operator+(Music* music);
 
+  Playlist operator-(Playlist* playlist_b);
+
+  Playlist operator-(Music* music);
+
+  void operator>>(Music* music);
   /*!
    * @brief An I/O operator overloading.
    *
