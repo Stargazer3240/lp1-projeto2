@@ -34,42 +34,30 @@ int main() {
   // User Interface.
   // while (main_menu(playlists, musics)) {
   // }
-  /*
-    auto mus6 = new Music("O Pato", "João Gilberto");
-    musics.push_back(mus6);
 
-    List<Playlist*> playlists2;
-    auto play3 = new Playlist("Chill Vibes");
-    playlists2.push_back(play3);
-    playlists2[0]->add_music(mus6);
+  // List::operator+(List<T>& list_b);
+  /* List<Playlist*> playlists2;
+  auto play3 = new Playlist("Banana");
+  playlists2.push_back(play3);
+  List<Playlist*> playlists3(playlists + playlists2);
+  playlists3.print(); */
 
+  // List::operator>>(Node<T>*)
+  /* auto music = new Music("Teste", "Testando");
+  auto node = new Node<Music*>(music);
+  musics.print();
+  cout << '\n';
+  musics >> node;
+  musics.print();
+  cout << '\n' << node->value;
+  delete music;
+  delete node; */
 
-    List<Playlist*> playlists3(playlists + playlists2);
-    list_playlists(playlists3);
-
-    playlists.add(playlists2);
-    list_playlists(playlists);
-    playlists.clear({play1, play2});
-    list_playlists(playlists);
-
-
-    List<Playlist*> playlists4;
-    auto play4 = new Playlist("Pop");
-    playlists4.push_back(play4);
-
-    cout << "Antes da extração: \n";
-    list_playlists(playlists4);
-    list_playlists(playlists2);
-    playlists4 >> playlists2.get(0);
-
-    cout << "Depois da extração/Antes da inserção: \n";
-    list_playlists(playlists4);
-    list_playlists(playlists2);
-    playlists4 << playlists2.get(0);
-    cout << "Depois da inserção: \n";
-    list_playlists(playlists4);
-    list_playlists(playlists2);
-  */
+  // List::operator<<(Node<T>*)
+  /* auto play3 = new Playlist("Oi");
+  auto node = new Node<Playlist*>(play3);
+  playlists << node;
+  playlists.print(); */
 
   // Playlist::add_music(Playlist&)
   /*
@@ -92,6 +80,34 @@ int main() {
     cout << "\n";
     play1->print();
   */
+
+  // Playlist::operator+(Playlist*)
+  /* playlists[0]->print();
+  playlists[1]->print();
+  cout << "\n";
+  Playlist play3(*playlists[0] + playlists[1]);
+  play3.print(); */
+
+  // Playlist::operator+(Music*)
+  /* Playlist play3("Celular");
+  Music mus6("Banana", "Pizza");
+  Playlist play4(play3 + &mus6);
+  play4.print(); */
+
+  // Playlist::operator-(Playlist* playlist_b)
+  /* play1->print();
+  cout << '\n';
+  play2->print();
+  cout << '\n';
+  Playlist play3(*play1 - play2);
+  play3.print(); */
+
+  // Playlist::operator-(Music* music)
+  /* play1->print();
+  cout << '\n' << mus2 << "\n\n";
+  Playlist play3(*play1 - mus2);
+  play3.print(); */
+
   playlists.clear_nodes();
   musics.clear_nodes();
 
