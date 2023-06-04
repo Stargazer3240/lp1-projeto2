@@ -2,11 +2,46 @@
 //
 // SPDX-License-Identifier: MIT
 
+#include <fstream>
+
 #include "interface.h"
 
-int main() {
+using std::fstream, std::getline;
+
+int main(int argc, char const* argv[]) {
   List<Playlist*> playlists;
   List<Music*> musics;
+
+
+  if(argc > 1) {
+    string filename{argv[1]};
+    fstream file(filename);
+
+    if(!file.is_open()) {
+      cout << "Failed to open " << filename << '\n';
+      return 1;
+    }
+  
+    string playlist_name;
+    getline(file, playlist_name, ';');
+    auto new_playlist = new Playlist(playlist_name);
+    playlists.push_back(new_playlist);
+
+    string music_title;
+    string music_artist;
+
+    while(!file.eof()) {
+      getline(file, music_title, ':');
+      getline(file, music_artist, ',');
+      if (!music_title.empty() && !music_artist.empty()) {
+        auto new_music = new Music(music_title, music_artist);
+        musics.push_back(new_music);
+      }
+    }
+
+    playlists.print();
+    musics.print();
+  }
 
   auto play1 = new Playlist("As 100 Melhores do Samba");
   auto play2 = new Playlist("Alternative Metal");
