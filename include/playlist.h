@@ -139,6 +139,8 @@ class Playlist {
   Playlist operator-(Music* music);
 
   void operator>>(Music* music);
+  void operator<<(Music* music);
+
   /*!
    * @brief An I/O operator overloading.
    *

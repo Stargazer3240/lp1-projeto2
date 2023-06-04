@@ -35,6 +35,23 @@ int main() {
   // while (main_menu(playlists, musics)) {
   // }
 
+  // List::add(List<T>& list)
+  /* List<Music*> musics2;
+  auto test_music = new Music("Oi", "Tchau");
+  musics2.push_back(test_music);
+  musics.add(musics2);
+  musics.print(); */
+
+  // List::remove(initializer_list<T> list)
+  /* musics.print();
+  cout << '\n';
+  musics.remove({mus1, mus2, mus5});
+  musics.print(); */
+
+  // List::List(List<T>& list)
+  /* List<Playlist*> playlists2(playlists);
+  playlists2.print(); */
+
   // List::operator+(List<T>& list_b);
   /* List<Playlist*> playlists2;
   auto play3 = new Playlist("Banana");
@@ -67,18 +84,18 @@ int main() {
   play1->print();
   */
 
-  // Playlist(Playlist&)
-  /*
-    auto play3 = new Playlist(*play1);
-    play3->print();
-  */
-
   // Playlist::remove_music(Playlist&)
   /*
     play1->print();
     play1->remove_music(*play2);
     cout << "\n";
     play1->print();
+  */
+
+  // Playlist(Playlist&)
+  /*
+    auto play3 = new Playlist(*play1);
+    play3->print();
   */
 
   // Playlist::operator+(Playlist*)
@@ -107,6 +124,20 @@ int main() {
   cout << '\n' << mus2 << "\n\n";
   Playlist play3(*play1 - mus2);
   play3.print(); */
+
+  // Playlist::operator>>(Music* music)
+  /* auto test_music = new Music();
+  play1->print();
+  *play1 >> test_music;
+  cout << test_music << '\n';
+  play1->print(); */
+
+  // Playlist::operator<<(Music* music);
+  /* auto test_music = new Music("Oi", "Tchau");
+  play1->print();
+  *play1 << test_music;
+  cout << '\n';
+  play1->print(); */
 
   playlists.clear_nodes();
   musics.clear_nodes();

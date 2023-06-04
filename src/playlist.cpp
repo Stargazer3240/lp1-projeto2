@@ -120,6 +120,26 @@ Playlist Playlist::operator-(Music* music) {
   return playlist;
 }
 
+void Playlist::operator>>(Music* music) {
+  if (getSize() > 0) {
+    int last{getSize() - 1};
+    string title = getMusics()[last]->getTitle();
+    string artist = getMusics()[last]->getArtist();
+    music->setTitle(title);
+    music->setArtist(artist);
+    getMusics().remove(last);
+    return;
+  }
+
+  music = nullptr;
+}
+
+void Playlist::operator<<(Music* music) {
+  if (music != nullptr) {
+    getMusics().push_back(music);
+  }
+}
+
 ostream& operator<<(ostream& out, const Playlist& playlist) {
   return out << "" << playlist.getName();
 }
