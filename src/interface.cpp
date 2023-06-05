@@ -29,7 +29,7 @@ void remove_music(List<Playlist*>& playlists, List<Music*>& musics) {
     --index;
     Music* desired_music = musics[index];
     cout << "This will remove Music:\n"
-         << desired_music << "Are you sure [y/n]? ";
+         << desired_music << "\nAre you sure [y/n]? ";
     char confirmation;
     cin >> confirmation;
     if (confirmation == 'y') {
@@ -50,11 +50,60 @@ void remove_music(List<Playlist*>& playlists, List<Music*>& musics) {
       musics.clear(index);
       cout << "Music removed!\n";
     } else if (confirmation == 'n') {
-      cout << "Operation cancelled.\n";
+      cout << "Operation cancelled.\n\n";
     } else {
-      cout << "Invalid operation.\n";
+      cout << "Invalid operation.\n\n";
     }
     cout << '\n';
+  }
+}
+
+void remove_multiple_musics(List<Playlist*>& playlists, List<Music*>& musics) {
+  list_musics(musics);
+  cout << "What is the index of the Musics to remove (space separeted)? ";
+  string to_remove;
+  cin.ignore();
+  getline(cin, to_remove);
+  cout << '\n';
+  int index;
+  stringstream ss(to_remove);
+  int counter{0};
+  while (ss >> index) {
+    index -= counter;
+    if (!is_index_valid(musics, index)) {
+      cout << "Invalid index!\n\n";
+    } else {
+      --index;
+      Music* desired_music = musics[index];
+      cout << "This will remove Music:\n"
+           << desired_music << "\nAre you sure [y/n]? ";
+      char confirmation;
+      cin >> confirmation;
+      if (confirmation == 'y') {
+        // Removing desired music from all playlists.
+        int size_i = playlists.getSize();
+        Playlist* test_playlist = nullptr;
+        Music* test_music = nullptr;
+        for (int i{0}; i < size_i; ++i) {
+          test_playlist = playlists[i];
+          for (int j{0}; j < test_playlist->getSize(); ++j) {
+            test_music = test_playlist->getMusics()[j];
+            if (test_music != nullptr && test_music == desired_music) {
+              test_playlist->remove_music(j);
+              j = 0;
+            }
+          }
+        }
+        musics.clear(index);
+        cout << "Music removed!\n";
+        ++counter;
+      } else if (confirmation == 'n') {
+        cout << "Operation cancelled.\n";
+      } else {
+        cout << "Invalid operation.\n";
+      }
+      cout << '\n';
+    }
   }
 }
 
@@ -70,7 +119,8 @@ void list_musics(const List<Music*>& musics) {
 
 bool music_menu(List<Playlist*>& playlists, List<Music*>& musics) {
   cout << "IMDJ - Musics Menu\n1 - Register Music\n"
-          "2 - Remove Music\n3 - List Musics\n0 - Return\n"
+          "2 - Remove Music\n3 - Remove Multiple Musics\n4 - List Musics\n0 - "
+          "Return\n"
           "Choose an option: ";
   int index;
   cin >> index;
@@ -83,6 +133,9 @@ bool music_menu(List<Playlist*>& playlists, List<Music*>& musics) {
       remove_music(playlists, musics);
       break;
     case 3:
+      remove_multiple_musics(playlists, musics);
+      break;
+    case 4:
       list_musics(musics);
       break;
     case 0:

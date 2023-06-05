@@ -5,9 +5,11 @@
 #ifndef INTERFACE_H
 #define INTERFACE_H
 
+#include <sstream>
+
 #include "playlist.h"
 
-using std::cin, std::getline;
+using std::cin, std::getline, std::stringstream;
 
 // Receives a linked list and checks if the desired input index is in a valid
 // range [1,size].
@@ -28,6 +30,7 @@ bool main_menu(List<Playlist*>& playlists, List<Music*>& musics);
 bool music_menu(List<Playlist*>& playlists, List<Music*>& musics);
 void register_music(List<Music*>& musics);
 void remove_music(List<Playlist*>& playlists, List<Music*>& musics);
+void remove_multiple_musics(List<Playlist*>& playlists, List<Music*>& musics);
 void list_musics(const List<Music*>& musics);
 
 bool playlist_menu(List<Playlist*>& playlists, const List<Music*>& musics);

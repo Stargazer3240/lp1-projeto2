@@ -31,7 +31,9 @@ void read_file(List<Playlist*>& playlists, List<Music*>& musics,
       if (!music_title.empty() && !music_artist.empty()) {
         auto new_music = new Music(music_title, music_artist);
         playlists[i]->add_music(new_music);
-        musics.push_back(new_music);
+        if (!musics.search(new_music)) {
+          musics.push_back(new_music);
+        }
       }
     }
     ++i;
