@@ -32,7 +32,13 @@ int Playlist::getSize() const { return music_list.getSize(); }
 void Playlist::add_music(Music* music) { music_list.push_back(music); }
 
 void Playlist::add_music(Playlist& playlist) {
-  this->music_list.add(playlist.getMusics());
+  if (this->music_list.getSize() == 0) {
+    for (int i{0}; i < playlist.music_list.getSize(); ++i) {
+      this->music_list.push_back(playlist.music_list[i]);
+    }
+  } else {
+    this->music_list.add(playlist.getMusics());
+  }
 }
 
 void Playlist::remove_music(int index) { music_list.remove(index); }
