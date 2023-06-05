@@ -28,9 +28,10 @@ int main(int argc, char const* argv[]) {
 
   // List::add(List<T>& list)
   // List<Music*> musics2;
-  // auto test_music = new Music("Oi", "Tchau");
-  // musics2.push_back(test_music);
+  // auto mus1 = new Music("Oi", "Tchau");
+  // musics2.push_back(mus1);
   // musics.add(musics2);
+  // musics2.remove(0);
   // musics.print();
 
   // List::remove(initializer_list<T> list)

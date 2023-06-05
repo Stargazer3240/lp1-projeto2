@@ -79,9 +79,9 @@ void delete_playlist(List<Playlist*>& playlists);
 void list_playlists(const List<Playlist*>& playlists);
 void list_playlist_musics(const List<Playlist*>& playlists);
 void add_music_playlist(List<Playlist*>& playlists, const List<Music*>& musics);
-void add_music_copy(List<Playlist*>& playlists);
+void add_music_append(List<Playlist*>& playlists);
 void remove_music_playlist(List<Playlist*>& playlists);
-void remove_music_copy(List<Playlist*>& playlists);
+void copy_playlist_minus(List<Playlist*>& playlists);
 void move_music_playlist(List<Playlist*>& playlists);
 void next_on_playlist(List<Playlist*>& playlists);
 

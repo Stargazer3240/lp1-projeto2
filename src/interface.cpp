@@ -153,6 +153,7 @@ void create_playlist_copy(List<Playlist*>& playlists) {
     --index;
     auto new_playlist = new Playlist(*playlists[index]);
     playlists.push_back(new_playlist);
+    cout << "Operation done with success.\n";
   }
 }
 
@@ -176,6 +177,7 @@ void create_playlist_union(List<Playlist*>& playlists) {
     string name;
     new_playlist->setName(name);
     playlists.push_back(new_playlist);
+    cout << "Operation done with success.\n";
   }
 }
 
@@ -196,6 +198,7 @@ void create_playlist_plus_music(List<Playlist*>& playlists,
     string name;
     new_playlist->setName(name);
     playlists.push_back(new_playlist);
+    cout << "Operation done with success.\n";
   }
 }
 
@@ -219,6 +222,7 @@ void create_playlist_difference(List<Playlist *> &playlists) {
     string name;
     new_playlist->setName(name);
     playlists.push_back(new_playlist);
+    cout << "Operation done with success.\n";
   }
 }
 
@@ -317,6 +321,22 @@ void add_music_playlist(List<Playlist*>& playlists,
   }
 }
 
+void add_music_append(List<Playlist*>& playlists) {
+  int index_play_a{get_index(list_playlists, "Playlist that will receive Musics", playlists)};
+  int index_play_b{get_index(list_playlists, "Playlist that will send Musics", playlists)};
+
+  if(!is_index_valid(playlists, index_play_b) || !is_index_valid(playlists, index_play_b)) {
+    cout << "Invalid index!\n\n";
+  } else {
+    --index_play_a;
+    --index_play_b;
+    Playlist* play_a{playlists[index_play_a]};
+    Playlist play_b{*playlists[index_play_b]};
+    play_a->add_music(play_b);
+    cout << "Operation done with success.\n";
+  }
+}
+
 void remove_music_playlist(List<Playlist*>& playlists) {
   list_playlists(playlists);
   cout << "What is the index of the Playlist you want? ";
@@ -344,6 +364,26 @@ void remove_music_playlist(List<Playlist*>& playlists) {
         cout << "Music removed from playlist with success.\n\n";
       }
     }
+  }
+}
+
+void copy_playlist_minus(List<Playlist*>& playlists) {
+  int index_play{get_index(list_playlists, "Playlist with the desired Musics", playlists)};
+  auto music_list = playlists[index_play]->getMusics();
+  int index_music{get_index(list_musics, "Music to be removed", music_list)};
+
+  if(!is_index_valid(playlists, index_play) || !is_index_valid(music_list, index_music)) {
+    cout << "Invalid index!\n\n";
+  } else {
+    --index_play;
+    --index_music;
+    auto desired_music = music_list[index_music];
+    auto new_playlist = new Playlist(*playlists[index_play] - desired_music);
+    cout << "What is the name of the new Playlist? ";
+    string name;
+    new_playlist->setName(name);
+    playlists.push_back(new_playlist);
+    cout << "Operation done with success.\n";
   }
 }
 
@@ -416,7 +456,7 @@ void next_on_playlist(List<Playlist*>& playlists) {
 bool playlist_menu2(List<Playlist*>& playlists, const List<Music*>& musics) {
   cout << "IMDJ - Playlists Menu 2\n1 - Add Musics from one Playlist to "
           "another\n"
-          "2 - Remove Musics from one Playlist using another\n"
+          "2 - Copy a Playlist minus one Music from it\n"
           "3 - Create Playlist by copying\n4 - Create Playlist by union\n"
           "5 - Create Playlist by copying plus new Music\n"
           "6 - Create Playlist by difference\n"
@@ -428,10 +468,10 @@ bool playlist_menu2(List<Playlist*>& playlists, const List<Music*>& musics) {
   cout << '\n';
   switch (index) {
     case 1:
-      add_music_copy(playlists);
+      add_music_append(playlists);
       break;
     case 2:
-      remove_music_copy(playlists);
+      copy_playlist_minus(playlists);
       break;
     case 3:
       create_playlist_copy(playlists);
@@ -463,7 +503,8 @@ bool playlist_menu(List<Playlist*>& playlists, const List<Music*>& musics) {
           "Playlist"
           "\n5 - Add Music to a Playlist\n6 - Remove Music from a Playlist\n"
           "7 - Move Music from a Playlist\n"
-          "8 - Show next Music to play in a Playlist\n0 - Return\n"
+          "8 - Show next Music to play in a Playlist\n"
+          "9 - Next page\n0 - Return\n"
           "Choose an option: ";
   int index;
   cin >> index;
