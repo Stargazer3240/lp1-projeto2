@@ -17,6 +17,26 @@ void register_music(List<Music*>& musics) {
   cout << "Music added with success!\n\n";
 }
 
+// Find occurences of a music, that will be removed, in all playlists
+void clear_playlists(Music* desired_music, List<Playlist*>& playlists) {
+  int size_i = playlists.getSize();
+  int size_j{0};
+  Playlist* test_playlist = nullptr;
+  Music* test_music = nullptr;
+
+  for (int i{0}; i < size_i; ++i) {
+    test_playlist = playlists[i];
+    size_j = test_playlist->getSize();
+    for (int j{0}; j < size_j; ++j) {
+      test_music = test_playlist->getMusics()[j];
+      if (test_music != nullptr && test_music == desired_music) {
+        test_playlist->remove_music(j);
+        --j;
+      }
+    }
+  }
+}
+
 void remove_music(List<Playlist*>& playlists, List<Music*>& musics) {
   list_musics(musics);
   cout << "What is the index of the Music to remove? ";
@@ -27,82 +47,46 @@ void remove_music(List<Playlist*>& playlists, List<Music*>& musics) {
     cout << "Invalid index!\n\n";
   } else {
     --index;
-    Music* desired_music = musics[index];
-    cout << "This will remove Music:\n"
-         << desired_music << "\nAre you sure [y/n]? ";
-    char confirmation;
-    cin >> confirmation;
-    if (confirmation == 'y') {
-      // Removing desired music from all playlists.
-      int size_i = playlists.getSize();
-      Playlist* test_playlist = nullptr;
-      Music* test_music = nullptr;
-      for (int i{0}; i < size_i; ++i) {
-        test_playlist = playlists[i];
-        for (int j{0}; j < test_playlist->getSize(); ++j) {
-          test_music = test_playlist->getMusics()[j];
-          if (test_music != nullptr && test_music == desired_music) {
-            test_playlist->remove_music(j);
-            j = 0;
-          }
-        }
-      }
+    Music* desired_music{musics[index]};
+    bool confirmation{user_confirmation("Music", desired_music)};
+    if (confirmation) {
+      clear_playlists(desired_music, playlists);
       musics.clear(index);
       cout << "Music removed!\n";
-    } else if (confirmation == 'n') {
-      cout << "Operation cancelled.\n\n";
-    } else {
-      cout << "Invalid operation.\n\n";
     }
-    cout << '\n';
   }
 }
 
-void remove_multiple_musics(List<Playlist*>& playlists, List<Music*>& musics) {
-  list_musics(musics);
-  cout << "What is the index of the Musics to remove (space separeted)? ";
+stringstream get_indexes(const string& wildcard) {
+  cout << "What are the indexes of the" << wildcard << " (space separeted)? ";
   string to_remove;
   cin.ignore();
   getline(cin, to_remove);
   cout << '\n';
-  int index;
   stringstream ss(to_remove);
-  int counter{0};
+
+  return ss;
+}
+
+void remove_multiple_musics(List<Playlist*>& playlists, List<Music*>& musics) {
+  list_musics(musics);
+  stringstream ss(get_indexes("Musics to remove"));
+  int counter{0};  // Keep track of how many elements were removed.
+  int index;
+
   while (ss >> index) {
-    index -= counter;
+    index -= counter;  // As we remove, the music list size decreases
     if (!is_index_valid(musics, index)) {
       cout << "Invalid index!\n\n";
     } else {
       --index;
-      Music* desired_music = musics[index];
-      cout << "This will remove Music:\n"
-           << desired_music << "\nAre you sure [y/n]? ";
-      char confirmation;
-      cin >> confirmation;
-      if (confirmation == 'y') {
-        // Removing desired music from all playlists.
-        int size_i = playlists.getSize();
-        Playlist* test_playlist = nullptr;
-        Music* test_music = nullptr;
-        for (int i{0}; i < size_i; ++i) {
-          test_playlist = playlists[i];
-          for (int j{0}; j < test_playlist->getSize(); ++j) {
-            test_music = test_playlist->getMusics()[j];
-            if (test_music != nullptr && test_music == desired_music) {
-              test_playlist->remove_music(j);
-              j = 0;
-            }
-          }
-        }
+      Music* desired_music{musics[index]};
+      bool confirmation{user_confirmation("Music", desired_music)};
+      if (confirmation) {
+        clear_playlists(desired_music, playlists);
         musics.clear(index);
-        cout << "Music removed!\n";
         ++counter;
-      } else if (confirmation == 'n') {
-        cout << "Operation cancelled.\n";
-      } else {
-        cout << "Invalid operation.\n";
       }
-      cout << '\n';
     }
   }
 }
@@ -157,6 +141,107 @@ void create_playlist(List<Playlist*>& playlists) {
   cout << "Playlist created with success!\n\n";
 }
 
+void create_playlist_copy(List<Playlist*>& playlists) {
+  list_playlists(playlists);
+  cout << "What is the index of the Playlist to copy? ";
+  int index;
+  cin >> index;
+  cout << '\n';
+  if (!is_index_valid(playlists, index)) {
+    cout << "Invalid index!\n\n";
+  } else {
+    --index;
+    auto new_playlist = new Playlist(*playlists[index]);
+    playlists.push_back(new_playlist);
+  }
+}
+
+void create_playlist_union(List<Playlist*>& playlists) {
+  list_playlists(playlists);
+  stringstream ss(get_indexes("two Playlists to make an union from"));
+  int first_index;
+  ss >> first_index;
+  int second_index;
+  ss >> second_index;
+
+  if (!is_index_valid(playlists, first_index) ||
+      !is_index_valid(playlists, second_index)) {
+    cout << "Invalid index!\n\n";
+  } else {
+    --first_index;
+    --second_index;
+    auto new_playlist =
+        new Playlist(*playlists[first_index] + playlists[second_index]);
+    cout << "What is the name of the new Playlist? ";
+    string name;
+    new_playlist->setName(name);
+    playlists.push_back(new_playlist);
+  }
+}
+
+void create_playlist_plus_music(List<Playlist*>& playlists,
+                                const List<Music*>& musics) {
+  int playlist_index{get_index(list_playlists, "Playlist to copy from", playlists)};
+  int music_index{get_index(list_musics, "Music that will be added to it? ", musics)};
+
+  if (!is_index_valid(playlists, playlist_index) ||
+      !is_index_valid(musics, music_index)) {
+    cout << "Invalid index!\n\n";
+  } else {
+    --playlist_index;
+    --music_index;
+    auto new_playlist =
+        new Playlist(*playlists[playlist_index] + musics[music_index]);
+    cout << "What is the name of the new Playlist? ";
+    string name;
+    new_playlist->setName(name);
+    playlists.push_back(new_playlist);
+  }
+}
+
+void create_playlist_difference(List<Playlist *> &playlists) { 
+  list_playlists(playlists);
+  stringstream ss(get_indexes("two Playlists to make a difference from"));
+  int first_index;
+  ss >> first_index;
+  int second_index;
+  ss >> second_index;
+
+  if (!is_index_valid(playlists, first_index) ||
+      !is_index_valid(playlists, second_index)) {
+    cout << "Invalid index!\n\n";
+  } else {
+    --first_index;
+    --second_index;
+    auto new_playlist =
+        new Playlist(*playlists[first_index] - playlists[second_index]);
+    cout << "What is the name of the new Playlist? ";
+    string name;
+    new_playlist->setName(name);
+    playlists.push_back(new_playlist);
+  }
+}
+
+void create_playlist_min_music(List<Playlist *> &playlists) { 
+  int playlist_index{get_index(list_playlists, "Playlist to copy from", playlists)};
+  List<Music*> playlist_musics(playlists[playlist_index]->getMusics());
+  int music_index{get_index(list_musics, "Music that will be removed from it? ", playlist_musics)};
+
+  if (!is_index_valid(playlists, playlist_index) ||
+      !is_index_valid(playlist_musics, music_index)) {
+    cout << "Invalid index!\n\n";
+  } else {
+    --playlist_index;
+    --music_index;
+    auto new_playlist =
+        new Playlist(*playlists[playlist_index] + playlist_musics[music_index]);
+    cout << "What is the name of the new Playlist? ";
+    string name;
+    new_playlist->setName(name);
+    playlists.push_back(new_playlist);
+  }
+}
+
 void delete_playlist(List<Playlist*>& playlists) {
   list_playlists(playlists);
   cout << "What is the index of the Playlist to delete? ";
@@ -167,19 +252,11 @@ void delete_playlist(List<Playlist*>& playlists) {
     cout << "Invalid index!\n\n";
   } else {
     --index;
-    cout << "This will remove Playlist:\n"
-         << playlists[index]->getName() << "\nAre you sure [y/n]? ";
-    char confirmation;
-    cin >> confirmation;
-    if (confirmation == 'y') {
+    string playlist_name{playlists[index]->getName()};
+    bool confirmation{user_confirmation("Playlist", playlist_name)};
+    if (confirmation) {
       playlists.clear(index);
-      cout << "Playlist removed!\n";
-    } else if (confirmation == 'n') {
-      cout << "Operation cancelled.\n";
-    } else {
-      cout << "Invalid operation.\n";
     }
-    cout << '\n';
   }
 }
 
@@ -369,7 +446,7 @@ bool playlist_menu2(List<Playlist*>& playlists, const List<Music*>& musics) {
       create_playlist_difference(playlists);
       break;
     case 7:
-      create_playlist_min_music(playlists, musics);
+      create_playlist_min_music(playlists);
       break;
     case 0:
       return false;
