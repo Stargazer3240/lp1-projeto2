@@ -108,10 +108,12 @@ Playlist Playlist::operator+(Music* music) {
 
 Playlist Playlist::operator-(Playlist* playlist_b) {
   Playlist playlist_a(*this);
-
   for (int i{0}; i < playlist_b->getSize(); ++i) {
     for (int j{0}; j < playlist_a.getSize(); ++j) {
-      if (playlist_b->getMusics()[i] == playlist_a.getMusics()[j]) {
+      auto music_b = playlist_b->getMusics()[i];
+      auto music_a = playlist_a.getMusics()[j];
+      if (music_b->getTitle() == music_a->getTitle() &&
+          music_b->getArtist() == music_a->getArtist()) {
         playlist_a.remove_music(j);
       }
     }
