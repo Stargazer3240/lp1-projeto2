@@ -175,7 +175,7 @@ class List {
    * @param list a second linked list you want to append to the current one.
    */
   void add(List<T>& list) {
-    for(int i{0}; i < list.getSize(); ++i) {
+    for (int i{0}; i < list.getSize(); ++i) {
       this->push_back(list[i]);
     }
   }

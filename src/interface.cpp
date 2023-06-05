@@ -184,8 +184,10 @@ void create_playlist_union(List<Playlist*>& playlists) {
 
 void create_playlist_plus_music(List<Playlist*>& playlists,
                                 const List<Music*>& musics) {
-  int playlist_index{get_index(list_playlists, "Playlist to copy from", playlists)};
-  int music_index{get_index(list_musics, "Music that will be added to it? ", musics)};
+  int playlist_index{
+      get_index(list_playlists, "Playlist to copy from", playlists)};
+  int music_index{
+      get_index(list_musics, "Music that will be added to it", musics)};
 
   if (!is_index_valid(playlists, playlist_index) ||
       !is_index_valid(musics, music_index)) {
@@ -197,6 +199,7 @@ void create_playlist_plus_music(List<Playlist*>& playlists,
         new Playlist(*playlists[playlist_index] + musics[music_index]);
     cout << "What is the name of the new Playlist? ";
     string name;
+    cin.ignore();
     getline(cin, name);
     new_playlist->setName(name);
     playlists.push_back(new_playlist);
@@ -204,7 +207,7 @@ void create_playlist_plus_music(List<Playlist*>& playlists,
   }
 }
 
-void create_playlist_difference(List<Playlist *> &playlists) { 
+void create_playlist_difference(List<Playlist*>& playlists) {
   list_playlists(playlists);
   stringstream ss(get_indexes("two Playlists to make a difference from"));
   int first_index;
@@ -229,10 +232,12 @@ void create_playlist_difference(List<Playlist *> &playlists) {
   }
 }
 
-void create_playlist_min_music(List<Playlist *> &playlists) { 
-  int playlist_index{get_index(list_playlists, "Playlist to copy from", playlists)};
+void create_playlist_min_music(List<Playlist*>& playlists) {
+  int playlist_index{
+      get_index(list_playlists, "Playlist to copy from", playlists)};
   List<Music*> playlist_musics(playlists[playlist_index]->getMusics());
-  int music_index{get_index(list_musics, "Music that will be removed from it? ", playlist_musics)};
+  int music_index{get_index(list_musics, "Music that will be removed from it? ",
+                            playlist_musics)};
 
   if (!is_index_valid(playlists, playlist_index) ||
       !is_index_valid(playlist_musics, music_index)) {
@@ -326,10 +331,13 @@ void add_music_playlist(List<Playlist*>& playlists,
 }
 
 void add_music_append(List<Playlist*>& playlists) {
-  int index_play_a{get_index(list_playlists, "Playlist that will receive Musics", playlists)};
-  int index_play_b{get_index(list_playlists, "Playlist that will send Musics", playlists)};
+  int index_play_a{get_index(list_playlists,
+                             "Playlist that will receive Musics", playlists)};
+  int index_play_b{
+      get_index(list_playlists, "Playlist that will send Musics", playlists)};
 
-  if(!is_index_valid(playlists, index_play_b) || !is_index_valid(playlists, index_play_b)) {
+  if (!is_index_valid(playlists, index_play_b) ||
+      !is_index_valid(playlists, index_play_b)) {
     cout << "Invalid index!\n\n";
   } else {
     --index_play_a;
@@ -372,11 +380,13 @@ void remove_music_playlist(List<Playlist*>& playlists) {
 }
 
 void copy_playlist_minus(List<Playlist*>& playlists) {
-  int index_play{get_index(list_playlists, "Playlist with the desired Musics", playlists)};
+  int index_play{
+      get_index(list_playlists, "Playlist with the desired Musics", playlists)};
   auto music_list = playlists[index_play]->getMusics();
   int index_music{get_index(list_musics, "Music to be removed", music_list)};
 
-  if(!is_index_valid(playlists, index_play) || !is_index_valid(music_list, index_music)) {
+  if (!is_index_valid(playlists, index_play) ||
+      !is_index_valid(music_list, index_music)) {
     cout << "Invalid index!\n\n";
   } else {
     --index_play;

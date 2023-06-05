@@ -16,6 +16,7 @@ void read_file(List<Playlist*>& playlists, List<Music*>& musics,
   string music_title;
   string music_artist;
   int i{0};
+  bool should_add{false};
 
   while (!file.eof()) {
     getline(file, playlist_line);
@@ -28,10 +29,17 @@ void read_file(List<Playlist*>& playlists, List<Music*>& musics,
     while (!sstr.eof()) {
       getline(sstr, music_title, ':');
       getline(sstr, music_artist, ',');
+      should_add = true;
       if (!music_title.empty() && !music_artist.empty()) {
-        auto new_music = new Music(music_title, music_artist);
-        playlists[i]->add_music(new_music);
-        if (!musics.search(new_music)) {
+        for (int j{0}; j < musics.getSize(); ++j) {
+          if (musics[j]->getTitle() == music_title &&
+              musics[j]->getArtist() == music_artist) {
+            should_add = false;
+          }
+        }
+        if (should_add) {
+          auto new_music = new Music(music_title, music_artist);
+          playlists[i]->add_music(new_music);
           musics.push_back(new_music);
         }
       }
