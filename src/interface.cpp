@@ -153,7 +153,7 @@ void create_playlist_copy(List<Playlist*>& playlists) {
     --index;
     auto new_playlist = new Playlist(*playlists[index]);
     playlists.push_back(new_playlist);
-    cout << "Operation done with success.\n";
+    cout << "Operation done with success.\n\n";
   }
 }
 
@@ -175,9 +175,10 @@ void create_playlist_union(List<Playlist*>& playlists) {
         new Playlist(*playlists[first_index] + playlists[second_index]);
     cout << "What is the name of the new Playlist? ";
     string name;
+    getline(cin, name);
     new_playlist->setName(name);
     playlists.push_back(new_playlist);
-    cout << "Operation done with success.\n";
+    cout << "Operation done with success.\n\n";
   }
 }
 
@@ -196,9 +197,10 @@ void create_playlist_plus_music(List<Playlist*>& playlists,
         new Playlist(*playlists[playlist_index] + musics[music_index]);
     cout << "What is the name of the new Playlist? ";
     string name;
+    getline(cin, name);
     new_playlist->setName(name);
     playlists.push_back(new_playlist);
-    cout << "Operation done with success.\n";
+    cout << "Operation done with success.\n\n";
   }
 }
 
@@ -220,9 +222,10 @@ void create_playlist_difference(List<Playlist *> &playlists) {
         new Playlist(*playlists[first_index] - playlists[second_index]);
     cout << "What is the name of the new Playlist? ";
     string name;
+    getline(cin, name);
     new_playlist->setName(name);
     playlists.push_back(new_playlist);
-    cout << "Operation done with success.\n";
+    cout << "Operation done with success.\n\n";
   }
 }
 
@@ -241,6 +244,7 @@ void create_playlist_min_music(List<Playlist *> &playlists) {
         new Playlist(*playlists[playlist_index] + playlist_musics[music_index]);
     cout << "What is the name of the new Playlist? ";
     string name;
+    getline(cin, name);
     new_playlist->setName(name);
     playlists.push_back(new_playlist);
   }
@@ -333,7 +337,7 @@ void add_music_append(List<Playlist*>& playlists) {
     Playlist* play_a{playlists[index_play_a]};
     Playlist play_b{*playlists[index_play_b]};
     play_a->add_music(play_b);
-    cout << "Operation done with success.\n";
+    cout << "Operation done with success.\n\n";
   }
 }
 
@@ -381,9 +385,10 @@ void copy_playlist_minus(List<Playlist*>& playlists) {
     auto new_playlist = new Playlist(*playlists[index_play] - desired_music);
     cout << "What is the name of the new Playlist? ";
     string name;
+    getline(cin, name);
     new_playlist->setName(name);
     playlists.push_back(new_playlist);
-    cout << "Operation done with success.\n";
+    cout << "Operation done with success.\n\n";
   }
 }
 
