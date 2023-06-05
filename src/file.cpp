@@ -37,9 +37,9 @@ void read_file(List<Playlist*>& playlists, List<Music*>& musics,
             should_add = false;
           }
         }
+        auto new_music = new Music(music_title, music_artist);
+        playlists[i]->add_music(new_music);
         if (should_add) {
-          auto new_music = new Music(music_title, music_artist);
-          playlists[i]->add_music(new_music);
           musics.push_back(new_music);
         }
       }
