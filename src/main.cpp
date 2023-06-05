@@ -17,8 +17,8 @@ int main(int argc, char const* argv[]) {
   }
 
   // User Interface.
-  // while (main_menu(playlists, musics)) {
-  // }
+  while (main_menu(playlists, musics)) {
+  }
 
   if (argc > 1) {
     string filename{argv[1]};
@@ -93,7 +93,7 @@ int main(int argc, char const* argv[]) {
   // cout << "\n";
   // play1->print();
 
-  // Playlist(Playlist&) 
+  // Playlist(Playlist&)
   // auto play1 = new Playlist("Play1");
   // auto mus1 = new Music("M1", "A1");
   // auto mus2 = new Music("M2", "A2");

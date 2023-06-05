@@ -336,6 +336,50 @@ void next_on_playlist(List<Playlist*>& playlists) {
   }
 }
 
+bool playlist_menu2(List<Playlist*>& playlists, const List<Music*>& musics) {
+  cout << "IMDJ - Playlists Menu 2\n1 - Add Musics from one Playlist to "
+          "another\n"
+          "2 - Remove Musics from one Playlist using another\n"
+          "3 - Create Playlist by copying\n4 - Create Playlist by union\n"
+          "5 - Create Playlist by copying plus new Music\n"
+          "6 - Create Playlist by difference\n"
+          "7 - Create Playlist by copying minus a Music\n"
+          "0 - Return\n"
+          "Choose an option: ";
+  int index;
+  cin >> index;
+  cout << '\n';
+  switch (index) {
+    case 1:
+      add_music_copy(playlists);
+      break;
+    case 2:
+      remove_music_copy(playlists);
+      break;
+    case 3:
+      create_playlist_copy(playlists);
+      break;
+    case 4:
+      create_playlist_union(playlists);
+      break;
+    case 5:
+      create_playlist_plus_music(playlists, musics);
+      break;
+    case 6:
+      create_playlist_difference(playlists);
+      break;
+    case 7:
+      create_playlist_min_music(playlists, musics);
+      break;
+    case 0:
+      return false;
+    default:
+      cout << "Invalid number!\n";
+      break;
+  }
+  return true;
+}
+
 bool playlist_menu(List<Playlist*>& playlists, const List<Music*>& musics) {
   cout << "IMDJ - Playlists Menu\n1 - Create Playlist\n"
           "2 - Delete Playlist\n3 - List Playlists\n4 - List Musics from a "
@@ -371,6 +415,9 @@ bool playlist_menu(List<Playlist*>& playlists, const List<Music*>& musics) {
       break;
     case 8:
       next_on_playlist(playlists);
+      break;
+    case 9:
+      playlist_menu2(playlists, musics);
       break;
     case 0:
       return false;

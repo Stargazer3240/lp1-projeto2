@@ -34,12 +34,22 @@ void remove_multiple_musics(List<Playlist*>& playlists, List<Music*>& musics);
 void list_musics(const List<Music*>& musics);
 
 bool playlist_menu(List<Playlist*>& playlists, const List<Music*>& musics);
+bool playlist_menu2(List<Playlist*>& playlists, const List<Music*>& musics);
 void create_playlist(List<Playlist*>& playlists);
+void create_playlist_copy(List<Playlist*>& playlists);
+void create_playlist_union(List<Playlist*>& playlists);
+void create_playlist_plus_music(List<Playlist*>& playlists,
+                                const List<Music*>& musics);
+void create_playlist_difference(List<Playlist*>& playlists);
+void create_playlist_min_music(List<Playlist*>& playlists,
+                               const List<Music*>& musics);
 void delete_playlist(List<Playlist*>& playlists);
 void list_playlists(const List<Playlist*>& playlists);
 void list_playlist_musics(const List<Playlist*>& playlists);
 void add_music_playlist(List<Playlist*>& playlists, const List<Music*>& musics);
+void add_music_copy(List<Playlist*>& playlists);
 void remove_music_playlist(List<Playlist*>& playlists);
+void remove_music_copy(List<Playlist*>& playlists);
 void move_music_playlist(List<Playlist*>& playlists);
 void next_on_playlist(List<Playlist*>& playlists);
 
