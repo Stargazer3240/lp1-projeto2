@@ -21,4 +21,5 @@ add_executable(program
                src/main.cpp
                src/music.cpp
                src/playlist.cpp
-               src/interface.cpp)
+               src/interface.cpp
+               src/file.cpp)

@@ -2,45 +2,18 @@
 //
 // SPDX-License-Identifier: MIT
 
-#include <fstream>
-
+#include "file.h"
 #include "interface.h"
-
-using std::fstream, std::getline;
 
 int main(int argc, char const* argv[]) {
   List<Playlist*> playlists;
   List<Music*> musics;
 
+  string filename{argv[1]};
 
-  if(argc > 1) {
-    string filename{argv[1]};
+  if (argc > 1) {
     fstream file(filename);
-
-    if(!file.is_open()) {
-      cout << "Failed to open " << filename << '\n';
-      return 1;
-    }
-  
-    string playlist_name;
-    getline(file, playlist_name, ';');
-    auto new_playlist = new Playlist(playlist_name);
-    playlists.push_back(new_playlist);
-
-    string music_title;
-    string music_artist;
-
-    while(!file.eof()) {
-      getline(file, music_title, ':');
-      getline(file, music_artist, ',');
-      if (!music_title.empty() && !music_artist.empty()) {
-        auto new_music = new Music(music_title, music_artist);
-        musics.push_back(new_music);
-      }
-    }
-
-    playlists.print();
-    musics.print();
+    read_file(playlists, musics, file);
   }
 
   auto play1 = new Playlist("As 100 Melhores do Samba");
@@ -59,16 +32,22 @@ int main(int argc, char const* argv[]) {
   musics.push_back(mus4);
   musics.push_back(mus5);
 
-  playlists[0]->add_music(mus1);
-  playlists[0]->add_music(mus4);
-  playlists[0]->add_music(mus2);
-  playlists[1]->add_music(mus3);
+  playlists[1]->add_music(mus1);
   playlists[1]->add_music(mus4);
-  playlists[1]->add_music(mus5);
   playlists[1]->add_music(mus2);
+  playlists[2]->add_music(mus3);
+  playlists[2]->add_music(mus4);
+  playlists[2]->add_music(mus5);
+  playlists[2]->add_music(mus2);
+
   // User Interface.
-  // while (main_menu(playlists, musics)) {
-  // }
+  while (main_menu(playlists, musics)) {
+  }
+
+  if (argc > 1) {
+    fstream file(filename);
+    write_file(playlists, file);
+  }
 
   // List::add(List<T>& list)
   /* List<Music*> musics2;
