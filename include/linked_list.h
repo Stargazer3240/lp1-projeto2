@@ -178,6 +178,9 @@ class List {
     this->tail->next = list.head;
     this->tail = list.tail;
     this->size += list.size;
+    list.head = nullptr;
+    list.tail = nullptr;
+    list.size = 0;
   }
 
   /*!
