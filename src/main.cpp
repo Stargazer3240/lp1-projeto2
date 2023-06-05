@@ -6,25 +6,19 @@
 #include "interface.h"
 #include "playlist.h"
 
-int main(int argc, char const* argv[]) {
+int main([[maybe_unused]] int argc, char const* argv[]) {
   List<Playlist*> playlists;
   List<Music*> musics;
 
-  if (argc > 1) {
-    string filename{argv[1]};
-    fstream file(filename);
-    read_file(playlists, musics, file);
-  }
+  string filename{argv[1]};
+  fstream file(filename);
+  List<Music*> duplicates = read_file(playlists, musics, file);
 
   // User Interface.
   while (main_menu(playlists, musics)) {
   }
 
-  if (argc > 1) {
-    string filename{argv[1]};
-    fstream file(filename, std::ios::trunc | std::ios::out);
-    write_file(playlists, file);
-  }
+  write_file(playlists, file);
 
   // List::add(List<T>& list)
   // List<Music*> musics2;
@@ -158,6 +152,7 @@ int main(int argc, char const* argv[]) {
 
   playlists.clear_nodes();
   musics.clear_nodes();
+  duplicates.clear_nodes();
 
   return 0;
 }
