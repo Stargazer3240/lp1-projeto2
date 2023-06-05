@@ -175,6 +175,7 @@ void create_playlist_union(List<Playlist*>& playlists) {
         new Playlist(*playlists[first_index] + playlists[second_index]);
     cout << "What is the name of the new Playlist? ";
     string name;
+    cin.ignore();
     getline(cin, name);
     new_playlist->setName(name);
     playlists.push_back(new_playlist);
@@ -225,6 +226,7 @@ void create_playlist_difference(List<Playlist*>& playlists) {
         new Playlist(*playlists[first_index] - playlists[second_index]);
     cout << "What is the name of the new Playlist? ";
     string name;
+    cin.ignore();
     getline(cin, name);
     new_playlist->setName(name);
     playlists.push_back(new_playlist);
@@ -235,20 +237,24 @@ void create_playlist_difference(List<Playlist*>& playlists) {
 void create_playlist_min_music(List<Playlist*>& playlists) {
   int playlist_index{
       get_index(list_playlists, "Playlist to copy from", playlists)};
+  if (!is_index_valid(playlists, playlist_index)) {
+    cout << "Invalid index!\n\n";
+    return;
+  }
+  --playlist_index;
   List<Music*> playlist_musics(playlists[playlist_index]->getMusics());
-  int music_index{get_index(list_musics, "Music that will be removed from it? ",
+  int music_index{get_index(list_musics, "Music that will be removed from it",
                             playlist_musics)};
 
-  if (!is_index_valid(playlists, playlist_index) ||
-      !is_index_valid(playlist_musics, music_index)) {
+  if (!is_index_valid(playlist_musics, music_index)) {
     cout << "Invalid index!\n\n";
   } else {
-    --playlist_index;
     --music_index;
     auto new_playlist =
-        new Playlist(*playlists[playlist_index] + playlist_musics[music_index]);
+        new Playlist(*playlists[playlist_index] - playlist_musics[music_index]);
     cout << "What is the name of the new Playlist? ";
     string name;
+    cin.ignore();
     getline(cin, name);
     new_playlist->setName(name);
     playlists.push_back(new_playlist);
@@ -395,6 +401,7 @@ void copy_playlist_minus(List<Playlist*>& playlists) {
     auto new_playlist = new Playlist(*playlists[index_play] - desired_music);
     cout << "What is the name of the new Playlist? ";
     string name;
+    cin.ignore();
     getline(cin, name);
     new_playlist->setName(name);
     playlists.push_back(new_playlist);
