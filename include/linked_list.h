@@ -306,12 +306,28 @@ class List {
     }
   }
 
+  /*!
+   * @brief An arithmetic operator overloading.
+   *
+   * Makes a concatenation between the implicit list and the param list.
+   * @param list_b the second list.
+   * @see add()
+   * @return A copy of the concatenation.
+   */
   List<T> operator+(List<T>& list_b) {
     List<T> list_a(*this);
     list_a.add(list_b);
     return list_a;
   }
 
+  /*!
+   * @brief An I/O operator overloading.
+   *
+   * Extracts the last node from the implicit list and send it to the
+   * param node. If the list is empty, the param node becomes a nullptr.
+   * @param node a node pointer that may be changed.
+   * @see getSize(); remove().
+   */
   void operator>>(Node<T>* node) {
     if (this->getSize() == 0) {
       node = nullptr;
@@ -321,14 +337,38 @@ class List {
     }
   }
 
+  /*!
+   * @brief An I/O operator overloading.
+   *
+   * Insert a param node at the end of the implicit list, if the node is not
+   * a nullptr.
+   * @param node a node pointer that will be inserted
+   * @see push_back
+   */
   void operator<<(Node<T>* node) {
     if (node != nullptr) {
       this->push_back(node->value);
     }
   }
 
+  /*!
+   * @brief An index operator overloading.
+   *
+   * Gets the value from the node at a certain index.
+   * @param index the desired index.
+   * @see get()
+   * @return The value of the desired node.
+   */
   T operator[](int index) { return get(index)->value; }
 
+  /*!
+   * @brief An index operator overloading.
+   *
+   * Gets the value from the node at a certain index from a const list.
+   * @param index the desired index.
+   * @see get()
+   * @return The value of the desired node.
+   */
   T operator[](int index) const { return get(index)->value; }
 };
 

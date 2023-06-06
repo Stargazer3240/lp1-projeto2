@@ -32,8 +32,8 @@ int Playlist::getSize() const { return music_list.getSize(); }
 void Playlist::add_music(Music* music) { music_list.push_back(music); }
 
 void Playlist::add_music(Playlist& playlist) {
-  if (this->music_list.getSize() == 0) {
-    for (int i{0}; i < playlist.music_list.getSize(); ++i) {
+  if (this->getSize() == 0) {
+    for (int i{0}; i < playlist.getSize(); ++i) {
       this->music_list.push_back(playlist.music_list[i]);
     }
   } else {
@@ -125,7 +125,7 @@ Playlist Playlist::operator-(Music* music) {
   Playlist playlist(*this);
 
   if (playlist.getMusics().search(music)) {
-    playlist.getMusics().remove(playlist.getMusics().find(music));
+    playlist.remove_music(playlist.getMusics().find(music));
   }
 
   return playlist;
@@ -138,7 +138,7 @@ void Playlist::operator>>(Music* music) {
     string artist = getMusics()[last]->getArtist();
     music->setTitle(title);
     music->setArtist(artist);
-    getMusics().remove(last);
+    this->remove_music(last);
     return;
   }
 
@@ -147,7 +147,7 @@ void Playlist::operator>>(Music* music) {
 
 void Playlist::operator<<(Music* music) {
   if (music != nullptr) {
-    getMusics().push_back(music);
+    add_music(music);
   }
 }
 

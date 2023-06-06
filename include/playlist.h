@@ -95,6 +95,14 @@ class Playlist {
    */
   void add_music(Music* music);
 
+  /*!
+   * @brief Adds multiple musics to the list of music.
+   *
+   * This method adds all the musics from the param playlist into the implicit
+   * playlist.
+   * @param music a pointer to a music
+   * @see List::push_back(); List::add(); music_list; getMusics(); getSize()
+   */
   void add_music(Playlist& playlist);
 
   /*!
@@ -107,6 +115,17 @@ class Playlist {
    */
   void remove_music(int index);
 
+  /*!
+   * @brief Removes multiple musics from the list of music.
+   *
+   * This method uses linked list's remove method to remove all the musics
+   * in common between the implicit playlist and the param playlist. Only
+   * the implicit playlist is modified.
+   * @param playlist the playlist with the musics to remove from the implicit
+   * playlist.
+   * @see List::remove(); List::search(); List::find(); music_list
+   * @return The number of musics removed.
+   */
   int remove_music(const Playlist& playlist);
 
   /*!
@@ -130,15 +149,64 @@ class Playlist {
    */
   void print(int index = 0) const;
 
+  /*!
+   * @brief An arithmetic operator overloading.
+   *
+   * Makes an union between the implicit playlist and the param playlist.
+   * @param playlist_b the second playlist
+   * @see getSize(); getMusics(); add_music()
+   * @return A copy of the union.
+   */
   Playlist operator+(Playlist* playlist_b);
 
+  /*!
+   * @brief An arithmetic operator overloading.
+   *
+   * Adds a music at the end of a copy of the implicit playlist.
+   * @param music the music to be added to the copy
+   * @see add_music()
+   * @return A copy of the playlist plus music.
+   */
   Playlist operator+(Music* music);
 
+  /*!
+   * @brief An arithmetic operator overloading.
+   *
+   * Makes a difference between the implicit playlist and the param playlist.
+   * @param playlist_b the second playlist
+   * @see getSize(); getMusics(); add_music(); remove_music()
+   * @return A copy of the difference.
+   */
   Playlist operator-(Playlist* playlist_b);
 
+  /*!
+   * @brief An arithmetic operator overloading.
+   *
+   * Removes a music from of a copy of the implicit playlist.
+   * @param music the music to be removed from the copy
+   * @see add_music()
+   * @return A copy of the playlist minus music.
+   */
   Playlist operator-(Music* music);
 
+  /*!
+   * @brief An I/O operator overloading.
+   *
+   * Extracts the last music from the implicit playlist and send it to the
+   * param music. If the playlist is empty, the param music becomes a nullptr.
+   * @param music a music pointer that may be changed.
+   * @see getMusics()
+   */
   void operator>>(Music* music);
+
+  /*!
+   * @brief An I/O operator overloading.
+   *
+   * Adds the param music to the end of the playlist, if the music is not a
+   * nullptr.
+   * @param music a music that will be inserted.
+   * @see add_music()
+   */
   void operator<<(Music* music);
 
   /*!
