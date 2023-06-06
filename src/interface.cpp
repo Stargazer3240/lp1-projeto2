@@ -30,6 +30,8 @@ void invalid_index() { cout << "Invalid index!\n\n"; }
 
 void operation_success() { cout << "Operation done with success.\n\n"; }
 
+void multiple_indexes() { cout << "\n(whitespace in between the indexes) "; }
+
 bool main_menu(List<Playlist*>& playlists, List<Music*>& musics) {
   cout << "IMDJ - Main Menu\n1 - Manage Musics\n2 - Manage Playlists\n"
           "0 - Exit\nChoose an option: ";
@@ -99,19 +101,18 @@ void remove_music(List<Playlist*>& playlists, List<Music*>& musics) {
   if (!is_index_valid(musics, index)) {
     invalid_index();
   } else {
-    --index;
     Music* desired_music{musics[index]};
     bool confirmation{user_confirmation("Music", desired_music)};
     if (confirmation) {
       clear_playlists(desired_music, playlists);
       musics.clear(index);
-      operation_success();
     }
   }
 }
 
 void remove_multiple_musics(List<Playlist*>& playlists, List<Music*>& musics) {
   print_string(list_musics, "Musics to remove", musics);
+  multiple_indexes();
   stringstream ss(get_indexes());
   int counter{0};  // Keep track of how many elements were removed.
   int index;
@@ -139,24 +140,33 @@ void list_musics(const List<Music*>& musics) {
   }
 }
 
-// Find occurences of a music, that will be removed, in all playlists
+// Find occurences of a music, that will be removed, in all playlists.
 void clear_playlists(Music* desired_music, List<Playlist*>& playlists) {
-  int size_i = playlists.getSize();
-  int size_j{0};
+  int size_i{playlists.getSize()};
   Playlist* test_playlist = nullptr;
   Music* test_music = nullptr;
 
   for (int i{0}; i < size_i; ++i) {
     test_playlist = playlists[i];
-    size_j = test_playlist->getSize();
-    for (int j{0}; j < size_j; ++j) {
+    for (int j{0}; j < test_playlist->getSize(); ++j) {
       test_music = test_playlist->getMusics()[j];
-      if (test_music != nullptr && test_music == desired_music) {
+      if (test_music != nullptr &&
+          test_music->getTitle() == desired_music->getTitle() &&
+          test_music->getArtist() == desired_music->getArtist()) {
         test_playlist->remove_music(j);
         --j;
       }
     }
   }
+}
+
+void playlist_renaming(Playlist* play, List<Playlist*>& playlists) {
+  cout << "What is the name of the new Playlist? ";
+  string name;
+  cin.ignore();
+  getline(cin, name);
+  play->setName(name);
+  playlists.push_back(play);
 }
 
 bool playlist_menu(List<Playlist*>& playlists, const List<Music*>& musics) {
@@ -207,12 +217,8 @@ bool playlist_menu(List<Playlist*>& playlists, const List<Music*>& musics) {
 }
 
 void create_playlist(List<Playlist*>& playlists) {
-  cout << "What is the name of the Playlist? ";
-  cin.ignore();
-  string name;
-  getline(cin, name);
-  auto new_playlist = new Playlist(name);
-  playlists.push_back(new_playlist);
+  auto new_playlist = new Playlist("Temporary Name");
+  playlist_renaming(new_playlist, playlists);
   operation_success();
 }
 
@@ -220,9 +226,8 @@ void delete_playlist(List<Playlist*>& playlists) {
   print_string(list_playlists, "Playlist to delete", playlists);
   int index{get_index()};
   if (!is_index_valid(playlists, index)) {
-    cout << "Invalid index!\n\n";
+    invalid_index();
   } else {
-    --index;
     string playlist_name{playlists[index]->getName()};
     bool confirmation{user_confirmation("Playlist", playlist_name)};
     if (confirmation) {
@@ -243,9 +248,8 @@ void list_playlist_musics(const List<Playlist*>& playlists) {
   print_string(list_playlists, "Playlist to print", playlists);
   int index{get_index()};
   if (!is_index_valid(playlists, index)) {
-    cout << "Invalid index!\n\n";
+    invalid_index();
   } else {
-    --index;
     Playlist* desired_playlist = playlists[index];
     desired_playlist->print();
     cout << '\n';
@@ -341,15 +345,6 @@ void next_on_playlist(List<Playlist*>& playlists) {
   }
 }
 
-void playlist_renaming(Playlist* play, List<Playlist*>& playlists) {
-  cout << "What is the name of the new Playlist? ";
-  string name;
-  cin.ignore();
-  getline(cin, name);
-  play->setName(name);
-  playlists.push_back(play);
-}
-
 bool playlist_menu2(List<Playlist*>& playlists, const List<Music*>& musics) {
   cout << "IMDJ - Playlists Menu 2\n1 - Add Musics from one Playlist to "
           "another\n"
@@ -393,7 +388,6 @@ void add_music_append(List<Playlist*>& playlists) {
   int index_a{get_index()};
   print_string(list_playlists, "Playlist that will send Musics", playlists);
   int index_b{get_index()};
-
   if (!is_index_valid(playlists, index_a) ||
       !is_index_valid(playlists, index_b)) {
     invalid_index();
@@ -416,9 +410,8 @@ void copy_playlist_minus(List<Playlist*>& playlists) {
   print_string(list_musics, "Music that will be removed from it",
                playlist_musics);
   int music_index{get_index()};
-
   if (!is_index_valid(playlist_musics, music_index)) {
-    cout << "Invalid index!\n\n";
+    invalid_index();
   } else {
     auto new_playlist =
         new Playlist(*playlists[playlist_index] - playlist_musics[music_index]);
@@ -428,14 +421,11 @@ void copy_playlist_minus(List<Playlist*>& playlists) {
 }
 
 void create_playlist_copy(List<Playlist*>& playlists) {
-  print_string(list_playlists, "two Playlists to to copy?", playlists);
-  int index;
-  cin >> index;
-  cout << '\n';
+  print_string(list_playlists, "the Playlists to to copy?", playlists);
+  int index{get_index()};
   if (!is_index_valid(playlists, index)) {
     invalid_index();
   } else {
-    --index;
     auto new_playlist = new Playlist(*playlists[index]);
     playlists.push_back(new_playlist);
     operation_success();
@@ -445,12 +435,13 @@ void create_playlist_copy(List<Playlist*>& playlists) {
 void create_playlist_union(List<Playlist*>& playlists) {
   print_string(list_playlists, "two Playlists to make an union from",
                playlists);
+  multiple_indexes();
   stringstream ss(get_indexes());
   int first_index;
   ss >> first_index;
+  --first_index;
   int second_index;
   ss >> second_index;
-  --first_index;
   --second_index;
   if (!is_index_valid(playlists, first_index) ||
       !is_index_valid(playlists, second_index)) {
@@ -484,6 +475,7 @@ void create_playlist_plus_music(List<Playlist*>& playlists,
 void create_playlist_difference(List<Playlist*>& playlists) {
   print_string(list_playlists, "two Playlists to make a difference from",
                playlists);
+  multiple_indexes();
   stringstream ss(get_indexes());
   int first_index;
   ss >> first_index;

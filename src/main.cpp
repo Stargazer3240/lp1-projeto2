@@ -11,14 +11,15 @@ int main([[maybe_unused]] int argc, char const* argv[]) {
   List<Music*> musics;
 
   string filename{argv[1]};
-  fstream file(filename);
-  List<Music*> duplicates = read_file(playlists, musics, file);
+  fstream file_rw(filename);
+  List<Music*> duplicates{read_file(playlists, musics, file_rw)};
 
   // User Interface.
   while (main_menu(playlists, musics)) {
   }
 
-  write_file(playlists, file);
+  fstream file_trunc(filename, std::ios::trunc | std::ios::out);
+  write_file(playlists, file_trunc);
 
   // List::add(List<T>& list)
   // List<Music*> musics2;

@@ -28,7 +28,7 @@ bool is_index_valid(const T playlist, int index) {
 // Receives user confirmation previous to a delete operation.
 template <typename T>
 bool user_confirmation(const string& wildcard, T to_remove) {
-  cout << "This will remove" << wildcard << ":\n"
+  cout << "This will remove " << wildcard << ":\n"
        << to_remove << "\nAre you sure [y/n]? ";
   char confirmation;
   cin >> confirmation;
@@ -51,7 +51,7 @@ bool user_confirmation(const string& wildcard, T to_remove) {
 template <typename Func, typename List>
 void print_string(Func func, const string& wildcard, const List& list) {
   func(list);
-  cout << "What are the indexes of the" << wildcard << " (space separeted)? ";
+  cout << "What is the index of the " << wildcard << "? ";
 }
 
 template <typename List>
@@ -68,6 +68,7 @@ stringstream get_indexes();
 void print_string(const string& wildcard, const Playlist& playlist);
 void invalid_index();
 void operation_success();
+void multiple_indexes();
 
 bool main_menu(List<Playlist*>& playlists, List<Music*>& musics);
 
@@ -77,6 +78,8 @@ void remove_music(List<Playlist*>& playlists, List<Music*>& musics);
 void remove_multiple_musics(List<Playlist*>& playlists, List<Music*>& musics);
 void list_musics(const List<Music*>& musics);
 void clear_playlists(Music* desired_music, List<Playlist*>& playlists);
+
+void playlist_renaming(Playlist* play, List<Playlist*>& playlists);
 
 bool playlist_menu(List<Playlist*>& playlists, const List<Music*>& musics);
 void create_playlist(List<Playlist*>& playlists);
