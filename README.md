@@ -5,7 +5,7 @@ SPDX-License-Identifier: MIT-0
 -->
 
 # IMDJ
-IMDJ is a symbolic CLI music library manager made for the first Project of the course LP1, from BTI-UFRN. 
+IMDJ is a symbolic CLI music library manager made for the second Project of the course LP1, from BTI-UFRN. 
 
 ## Instalation
 
@@ -18,8 +18,8 @@ IMDJ is a symbolic CLI music library manager made for the first Project of the c
 
 ### Compilation
 ``` 
-git clone https://github.com/Stargazer3240/lp1-projeto1.git
-cd ./lp1-projeto1
+git clone https://github.com/Stargazer3240/lp1-projeto2.git
+cd ./lp1-projeto2
 cmake -S . -B build/
 cmake --build build/
 ```
@@ -74,9 +74,9 @@ IMDJ - Main Menu
 0 - Exit
 Choose an option: 0
 ```
-Most of the navigation occurs in the mentioned way, with the exception of
-Registering Music and Creating Playlist, in which you'll be able to enter
-names with multiple words.
+Most of the navigation occurs in the mentioned way but, in some cases, you will be asked
+to type a name, where you can enter multiple words. Also, in the second Playlist menu page,
+some operations ask for two indexes, where you should type them separed by space (i.e `4 5`).
 
 ## Limitations
 - If you type a non-numeric char when the program says "Choose an option: ", it will break and enter an infinite loop.
